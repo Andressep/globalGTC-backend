@@ -1,12 +1,17 @@
 package com.example.globalgtcbackend.models.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@ToString
+@AllArgsConstructor
 @Entity
 @Table(name = "clientes")
 public class Cliente implements Serializable {
@@ -23,69 +28,12 @@ public class Cliente implements Serializable {
     private List<Cotizacion> cotizaciones;
 
     public Cliente() {
-        cotizaciones =new ArrayList<>();
+        cotizaciones = new ArrayList<>();
     }
 
-    public Cliente(Integer id, String name, String rut, String email) {
-        this.id = id;
-        this.name = name;
-        this.rut = rut;
-        this.email = email;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getRut() {
-        return rut;
-    }
-
-    public void setRut(String rut) {
-        this.rut = rut;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public List<Cotizacion> getCotizaciones() {
-        return cotizaciones;
-    }
-
-    public void setCotizaciones(List<Cotizacion> cotizaciones) {
-        this.cotizaciones = cotizaciones;
-    }
-    public void agregarCotizaciones(Cotizacion cotizacion) {
+   public void agregarCotizaciones(Cotizacion cotizacion) {
         cotizaciones.add(cotizacion);
     }
-
-    @Override
-    public String toString() {
-        return "Cliente{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", rut='" + rut + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
-
     @Serial
     private static final long serialVersionUID = 1L;
 }

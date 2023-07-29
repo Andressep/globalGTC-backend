@@ -1,6 +1,9 @@
 package com.example.globalgtcbackend.models.entity;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serial;
@@ -9,6 +12,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
+@Setter
+@ToString
 @Entity
 @Table(name = "cotizaciones")
 public class Cotizacion implements Serializable {
@@ -30,55 +36,13 @@ public class Cotizacion implements Serializable {
     public Cotizacion() {
         productos = new ArrayList<>();
     }
-
     @PrePersist
     public void prePersist() { createAt = LocalDate.now(); }
-
     public Cotizacion(Integer id, Cliente cliente, Vendedor vendedor) {
         this.id = id;
         this.cliente = cliente;
         this.vendedor = vendedor;
         productos = new ArrayList<>();
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public LocalDate getCreateAt() {
-        return createAt;
-    }
-
-    public void setCreateAt(LocalDate createAt) {
-        this.createAt = createAt;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-
-    public Vendedor getVendedor() {
-        return vendedor;
-    }
-
-    public void setVendedor(Vendedor vendedor) {
-        this.vendedor = vendedor;
-    }
-
-    public List<ProductoCotizacion> getProductos() {
-        return productos;
-    }
-
-    public void setProductos(List<ProductoCotizacion> productos) {
-        this.productos = productos;
     }
     public void agregarProductos(ProductoCotizacion producto) {
         this.productos.add(producto);
@@ -92,17 +56,6 @@ public class Cotizacion implements Serializable {
         }
         return total;
     }
-
-    @Override
-    public String toString() {
-        return "Cotizacion{" +
-                "id=" + id +
-                ", createAt=" + createAt +
-                ", cliente=" + cliente +
-                ", vendedor=" + vendedor +
-                '}';
-    }
-
     @Serial
     private static final long serialVersionUID = 1L;
 }

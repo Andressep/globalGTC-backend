@@ -1,7 +1,9 @@
 package com.example.globalgtcbackend.models.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "vendedor")
 public class Vendedor {
@@ -11,35 +13,4 @@ public class Vendedor {
     @Column(name = "name")
     private String name;
 
-    public Vendedor() {
-    }
-
-    public Vendedor(Integer id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public String toString() {
-        return "Vendedor{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                '}';
-    }
 }

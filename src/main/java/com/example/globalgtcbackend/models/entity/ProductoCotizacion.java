@@ -1,10 +1,12 @@
 package com.example.globalgtcbackend.models.entity;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
 
+@Data
 @Entity
 @Table(name = "productos_cotizacion")
 public class ProductoCotizacion implements Serializable {
@@ -15,22 +17,6 @@ public class ProductoCotizacion implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "producto_id")
     private Producto producto;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public int getCantidad() {
-        return cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
-    }
     public int calcularPrecio() {
         return cantidad * producto.getPrice();
     }
