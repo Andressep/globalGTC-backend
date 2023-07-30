@@ -9,5 +9,4 @@ public class GlobalGtcBackendApplication {
     public static void main(String[] args) {
         SpringApplication.run(GlobalGtcBackendApplication.class, args);
     }
-
 }

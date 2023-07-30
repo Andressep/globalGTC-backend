@@ -1,13 +1,17 @@
 package com.example.globalgtcbackend.models.entity;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
 
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name = "productos")
 public class Producto implements Serializable {
@@ -21,6 +25,7 @@ public class Producto implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name = "create_at")
     private LocalDate createAt;
+
     @PrePersist
     public void prePersist() { createAt = LocalDate.now(); }
     @Serial
