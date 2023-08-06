@@ -3,6 +3,8 @@ package com.example.globalgtcbackend.models.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -10,11 +12,13 @@ import lombok.*;
 @ToString
 @Entity
 @Table(name = "vendedor")
-public class Vendedor {
+public class Vendedor implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer vendedor_id;
     @Column(name = "name")
     private String name;
+
+    private static final long serialVersionUID = 1L;
 
 }

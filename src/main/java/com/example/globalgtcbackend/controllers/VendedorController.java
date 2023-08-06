@@ -91,7 +91,7 @@ public class VendedorController {
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
         try {
-            vendedorUpdated.setName(vendedor.getName());
+            vendedorActual.setName(vendedor.getName());
             vendedorUpdated = vendedorService.saveVendedor(vendedorActual);
         } catch (DataAccessException e) {
             response.put("message", "Error al actualizar la base de datos.");

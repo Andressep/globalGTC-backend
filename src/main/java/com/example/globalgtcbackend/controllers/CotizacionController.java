@@ -1,7 +1,7 @@
 package com.example.globalgtcbackend.controllers;
 
-import com.example.globalgtcbackend.models.entity.Cliente;
-import com.example.globalgtcbackend.service.IClienteService;
+import com.example.globalgtcbackend.models.entity.Cotizacion;
+import com.example.globalgtcbackend.service.ICotizacionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -13,16 +13,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 @RestController
 @RequestMapping("/api/v1")
-public class ClienteController {
-    @Autowired
-    private IClienteService clienteService;
+public class CotizacionController {
 
-    @RequestMapping(value = "/cliente", method = RequestMethod.POST)
-    public ResponseEntity<?> create(@RequestBody Cliente cliente, BindingResult result) {
-        Cliente nuevoCliente = null;
+    @Autowired
+    private ICotizacionService cotizacionService;
+
+    @RequestMapping(value = "/cotizacion", method = RequestMethod.POST)
+    public ResponseEntity<?> create(@RequestBody Cotizacion cotizacion, BindingResult result) {
+        Cotizacion nuevaCotizacion = null;
         Map<String, Object> response = new HashMap<>();
 
         if (result.hasErrors()) {
@@ -36,45 +36,45 @@ public class ClienteController {
         }
 
         try {
-            nuevoCliente = clienteService.saveCliente(cliente);
+            nuevaCotizacion = cotizacionService.saveCotizacion(cotizacion);
         } catch (DataAccessException e) {
             response.put("message", "Error al realizar el insert en la base de datos");
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("message", "Cliente creado con exito");
-        response.put("cliente", nuevoCliente);
+        response.put("message", "Cotizacion creada con exito");
+        response.put("cotizacion", nuevaCotizacion);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/clientes", method = RequestMethod.GET)
-    public List<Cliente> getAll() {
-        return clienteService.allClients();
+    @RequestMapping(value = "/cotizaciones", method = RequestMethod.GET)
+    public List<Cotizacion> getAll() {
+        return cotizacionService.allCotizacions();
     }
 
-    @RequestMapping(value = "/cliente/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/cotizacion/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> show(@PathVariable Integer id) {
-        Cliente cliente = null;
+        Cotizacion cotizacion = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            cliente = clienteService.findClienteById(id);
+            cotizacion = cotizacionService.findCotizacionById(id);
         } catch (DataAccessException e) {
             response.put("message", "Error al buscar en la base de datos");
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        if (cliente == null) {
-            response.put("message", "El cliente ID: ".concat(id.toString()).concat(" no existe en la base de datos"));
+        if (cotizacion == null) {
+            response.put("message", "La cotizacion ID: ".concat(id.toString()).concat(" no existe en la base de datos"));
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(cliente, HttpStatus.OK);
+        return new ResponseEntity<>(cotizacion, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/cliente/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> update(@RequestBody Cliente cliente, BindingResult result, @PathVariable Integer id) {
-        Cliente clienteActual = clienteService.findClienteById(id);
-        Cliente clienteUpdated = null;
+    @RequestMapping(value = "/cotizacion/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> update(@RequestBody Cotizacion cotizacion, BindingResult result, @PathVariable Integer id) {
+        Cotizacion cotizacionActual = cotizacionService.findCotizacionById(id);
+        Cotizacion cotizacionUpdated = null;
 
         Map<String, Object> response = new HashMap<>();
 
@@ -87,37 +87,36 @@ public class ClienteController {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
-        if (clienteActual == null) {
-            response.put("message", "Error: no se pudo editar, el cliente ID: ".concat(id.toString().concat(" no existe en la base de datos.")));
+        if (cotizacionActual == null) {
+            response.put("message", "Error: no se pudo editar, la cotizacion ID: ".concat(id.toString().concat(" no existe en la base de datos.")));
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
         try {
-            clienteActual.setName(cliente.getName());
-            clienteActual.setRut(cliente.getRut());
-            clienteActual.setEmail(cliente.getEmail());
-            clienteActual.setCotizaciones(cliente.getCotizaciones());
-            clienteUpdated = clienteService.saveCliente(clienteActual);
+            cotizacionActual.setCliente(cotizacion.getCliente());
+            cotizacionActual.setVendedor(cotizacion.getVendedor());
+            cotizacionActual.setProductos(cotizacion.getProductos());
+            cotizacionUpdated = cotizacionService.saveCotizacion(cotizacionActual);
         } catch (DataAccessException e) {
             response.put("message", "Error al actualizar la base de datos.");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         response.put("message", "El cliente ha sido actualizado con exito");
-        response.put("cliente", clienteUpdated);
+        response.put("cotizacion", cotizacionUpdated);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/cliente/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/cotizacion/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         Map<String, Object> response = new HashMap<>();
         try {
-            clienteService.deleteCliente(id);
+            cotizacionService.deleteCliente(id);
         } catch (DataAccessException e) {
             response.put("message", "Error al eliminar la base de datos.");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "El cliente fue eliminado con exito!");
+        response.put("mensaje", "La cotizacion fue eliminado con exito!");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }

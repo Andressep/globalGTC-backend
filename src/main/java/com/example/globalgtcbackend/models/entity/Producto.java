@@ -3,7 +3,6 @@ package com.example.globalgtcbackend.models.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.io.Serial;
 import java.io.Serializable;
 import java.time.LocalDate;
 
@@ -17,7 +16,7 @@ import java.time.LocalDate;
 public class Producto implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Integer producto_id;
     private String name;
     private String size;
     private int price;
@@ -28,6 +27,6 @@ public class Producto implements Serializable {
 
     @PrePersist
     public void prePersist() { createAt = LocalDate.now(); }
-    @Serial
+
     private static final long serialVersionUID = 1L;
 }

@@ -1,7 +1,9 @@
 package com.example.globalgtcbackend.controllers;
 
-import com.example.globalgtcbackend.models.entity.Cliente;
-import com.example.globalgtcbackend.service.IClienteService;
+import com.example.globalgtcbackend.models.entity.Cotizacion;
+import com.example.globalgtcbackend.models.entity.Producto;
+import com.example.globalgtcbackend.service.ICotizacionService;
+import com.example.globalgtcbackend.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -13,16 +15,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 @RestController
 @RequestMapping("/api/v1")
-public class ClienteController {
-    @Autowired
-    private IClienteService clienteService;
+public class ProductoController {
 
-    @RequestMapping(value = "/cliente", method = RequestMethod.POST)
-    public ResponseEntity<?> create(@RequestBody Cliente cliente, BindingResult result) {
-        Cliente nuevoCliente = null;
+    @Autowired
+    private IProductoService productoService;
+
+    @RequestMapping(value = "/producto", method = RequestMethod.POST)
+    public ResponseEntity<?> create(@RequestBody Producto producto, BindingResult result) {
+        Producto nuevoProducto = null;
         Map<String, Object> response = new HashMap<>();
 
         if (result.hasErrors()) {
@@ -36,45 +38,45 @@ public class ClienteController {
         }
 
         try {
-            nuevoCliente = clienteService.saveCliente(cliente);
+            nuevoProducto = productoService.saveProducto(producto);
         } catch (DataAccessException e) {
             response.put("message", "Error al realizar el insert en la base de datos");
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("message", "Cliente creado con exito");
-        response.put("cliente", nuevoCliente);
+        response.put("message", "Producto creado con exito");
+        response.put("producto", nuevoProducto);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value = "/clientes", method = RequestMethod.GET)
-    public List<Cliente> getAll() {
-        return clienteService.allClients();
+    @RequestMapping(value = "/productos", method = RequestMethod.GET)
+    public List<Producto> getAll() {
+        return productoService.allProductos();
     }
 
-    @RequestMapping(value = "/cliente/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/producto/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> show(@PathVariable Integer id) {
-        Cliente cliente = null;
+        Producto producto = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            cliente = clienteService.findClienteById(id);
+            producto = productoService.findProductoById(id);
         } catch (DataAccessException e) {
             response.put("message", "Error al buscar en la base de datos");
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        if (cliente == null) {
-            response.put("message", "El cliente ID: ".concat(id.toString()).concat(" no existe en la base de datos"));
+        if (producto == null) {
+            response.put("message", "El producto ID: ".concat(id.toString()).concat(" no existe en la base de datos"));
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(cliente, HttpStatus.OK);
+        return new ResponseEntity<>(producto, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/cliente/{id}", method = RequestMethod.PUT)
-    public ResponseEntity<?> update(@RequestBody Cliente cliente, BindingResult result, @PathVariable Integer id) {
-        Cliente clienteActual = clienteService.findClienteById(id);
-        Cliente clienteUpdated = null;
+    @RequestMapping(value = "/producto/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<?> update(@RequestBody Producto producto, BindingResult result, @PathVariable Integer id) {
+        Producto productoActual = productoService.findProductoById(id);
+        Producto productoUpdated = null;
 
         Map<String, Object> response = new HashMap<>();
 
@@ -87,37 +89,37 @@ public class ClienteController {
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
 
-        if (clienteActual == null) {
-            response.put("message", "Error: no se pudo editar, el cliente ID: ".concat(id.toString().concat(" no existe en la base de datos.")));
+        if (productoActual == null) {
+            response.put("message", "Error: no se pudo editar, la producto ID: ".concat(id.toString().concat(" no existe en la base de datos.")));
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
         try {
-            clienteActual.setName(cliente.getName());
-            clienteActual.setRut(cliente.getRut());
-            clienteActual.setEmail(cliente.getEmail());
-            clienteActual.setCotizaciones(cliente.getCotizaciones());
-            clienteUpdated = clienteService.saveCliente(clienteActual);
+            productoActual.setName(producto.getName());
+            productoActual.setPrice(producto.getPrice());
+            productoActual.setSize(producto.getSize());
+            productoActual.setWeight(producto.getWeight());
+            productoUpdated = productoService.saveProducto(productoActual);
         } catch (DataAccessException e) {
             response.put("message", "Error al actualizar la base de datos.");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("message", "El cliente ha sido actualizado con exito");
-        response.put("cliente", clienteUpdated);
+        response.put("message", "El producto ha sido actualizado con exito");
+        response.put("producto", productoUpdated);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    @RequestMapping(value="/cliente/{id}", method = RequestMethod.DELETE)
+    @RequestMapping(value="/producto/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         Map<String, Object> response = new HashMap<>();
         try {
-            clienteService.deleteCliente(id);
+            productoService.deleteProducto(id);
         } catch (DataAccessException e) {
             response.put("message", "Error al eliminar la base de datos.");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        response.put("mensaje", "El cliente fue eliminado con exito!");
+        response.put("mensaje", "El producto fue eliminado con exito!");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 }
