@@ -1,7 +1,9 @@
 package com.example.globalgtcbackend.controllers;
 
 import com.example.globalgtcbackend.models.entity.Cotizacion;
-import com.example.globalgtcbackend.service.ICotizacionService;
+import com.example.globalgtcbackend.models.entity.Producto;
+import com.example.globalgtcbackend.service.IClienteService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
@@ -18,7 +20,7 @@ import java.util.Map;
 public class CotizacionController {
 
     @Autowired
-    private ICotizacionService cotizacionService;
+    private IClienteService clienteService;
 
     @RequestMapping(value = "/cotizacion", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody Cotizacion cotizacion, BindingResult result) {
@@ -36,7 +38,7 @@ public class CotizacionController {
         }
 
         try {
-            nuevaCotizacion = cotizacionService.saveCotizacion(cotizacion);
+            nuevaCotizacion = clienteService.saveCotizacion(cotizacion);
         } catch (DataAccessException e) {
             response.put("message", "Error al realizar el insert en la base de datos");
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
@@ -49,7 +51,7 @@ public class CotizacionController {
 
     @RequestMapping(value = "/cotizaciones", method = RequestMethod.GET)
     public List<Cotizacion> getAll() {
-        return cotizacionService.allCotizacions();
+        return clienteService.allCotizacions();
     }
 
     @RequestMapping(value = "/cotizacion/{id}", method = RequestMethod.GET)
@@ -58,7 +60,7 @@ public class CotizacionController {
         Map<String, Object> response = new HashMap<>();
 
         try {
-            cotizacion = cotizacionService.findCotizacionById(id);
+            cotizacion = clienteService.findCotizacionById(id);
         } catch (DataAccessException e) {
             response.put("message", "Error al buscar en la base de datos");
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
@@ -71,9 +73,15 @@ public class CotizacionController {
         return new ResponseEntity<>(cotizacion, HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/cotizacion/filtrar/{term}")
+    public List<Producto> showProductsByName(@PathVariable String term) {
+        return clienteService.findByNombreProducto(term);
+    }
+
+
     @RequestMapping(value = "/cotizacion/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@RequestBody Cotizacion cotizacion, BindingResult result, @PathVariable Integer id) {
-        Cotizacion cotizacionActual = cotizacionService.findCotizacionById(id);
+        Cotizacion cotizacionActual = clienteService.findCotizacionById(id);
         Cotizacion cotizacionUpdated = null;
 
         Map<String, Object> response = new HashMap<>();
@@ -95,7 +103,7 @@ public class CotizacionController {
             cotizacionActual.setCliente(cotizacion.getCliente());
             cotizacionActual.setVendedor(cotizacion.getVendedor());
             cotizacionActual.setProductos(cotizacion.getProductos());
-            cotizacionUpdated = cotizacionService.saveCotizacion(cotizacionActual);
+            cotizacionUpdated = clienteService.saveCotizacion(cotizacionActual);
         } catch (DataAccessException e) {
             response.put("message", "Error al actualizar la base de datos.");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
@@ -110,7 +118,7 @@ public class CotizacionController {
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         Map<String, Object> response = new HashMap<>();
         try {
-            cotizacionService.deleteCliente(id);
+            clienteService.deleteCliente(id);
         } catch (DataAccessException e) {
             response.put("message", "Error al eliminar la base de datos.");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));

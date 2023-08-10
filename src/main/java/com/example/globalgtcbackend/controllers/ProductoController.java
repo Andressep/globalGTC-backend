@@ -1,8 +1,6 @@
 package com.example.globalgtcbackend.controllers;
 
-import com.example.globalgtcbackend.models.entity.Cotizacion;
 import com.example.globalgtcbackend.models.entity.Producto;
-import com.example.globalgtcbackend.service.ICotizacionService;
 import com.example.globalgtcbackend.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
