@@ -36,7 +36,7 @@ public class Cotizacion implements Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "cotizacion_id")
-    private List<CotizacionProducto> productos;
+    private List<Items> productos;
 
     public Cotizacion() {
         productos = new ArrayList<>();
@@ -49,7 +49,7 @@ public class Cotizacion implements Serializable {
         this.vendedor = vendedor;
         productos = new ArrayList<>();
     }
-    public void addProductosCotizacion(CotizacionProducto items) {
+    public void addProductosCotizacion(Items items) {
         this.productos.add(items);
     }
     public int getTotal() {

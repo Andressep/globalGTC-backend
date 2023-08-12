@@ -2,6 +2,7 @@ package com.example.globalgtcbackend.models.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
+import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
 

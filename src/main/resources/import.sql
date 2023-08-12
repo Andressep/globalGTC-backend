@@ -6,6 +6,6 @@ INSERT INTO productos (name, weight, price, size, create_at) VALUES ('Acero', 3,
 INSERT INTO productos (name, weight, price, size, create_at) VALUES ('Mortero', 25, 2600, '', NOW());
 ## Cotizaciones
 INSERT INTO cotizaciones (cliente_id, vendedor_id, create_at) VALUES (1, 1, now());
-INSERT INTO cot_productos(cotizacion_id, producto_id, cantidad) VALUES (1, 1, 2);
-INSERT INTO cot_productos(cotizacion_id, producto_id, cantidad) VALUES (1, 2, 4);
+INSERT INTO items(cotizacion_id, producto_id, cantidad) VALUES (1, 1, 2);
+INSERT INTO items(cotizacion_id, producto_id, cantidad) VALUES (1, 2, 4);
 
