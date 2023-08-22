@@ -18,9 +18,10 @@ public class Producto implements Serializable {
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer producto_id;
     private String name;
+    private String code_id;
     private String size;
     private int price;
-    private int weight;
+    private double weight;
     @Temporal(TemporalType.DATE)
     @Column(name = "create_at")
     private LocalDate createAt;
