@@ -19,7 +19,7 @@ import java.util.Map;
 public class ClienteController {
     @Autowired
     private IClienteService clienteService;
-
+    
     @RequestMapping(value = "/cliente", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody Cliente cliente, BindingResult result) {
         Cliente nuevoCliente = null;

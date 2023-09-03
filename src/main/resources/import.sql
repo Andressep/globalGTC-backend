@@ -44,6 +44,11 @@ INSERT INTO productos (name, code_id, weight, price, size, create_at) VALUES ('T
 INSERT INTO productos (name, code_id, weight, price, size, create_at) VALUES ('Tabique Montante Economico 38x38x6x0,50 2400MM', '3010-02400', 1.15, 0, '2400MM', NOW());
 INSERT INTO productos (name, code_id, weight, price, size, create_at) VALUES ('Tabique Montante Economico 38x38x6x0,50 3000MM', '3010-03000', 1.44, 0, '3000MM', NOW());
 
+    #Acero
+        ## Tabique Canal
+INSERT INTO productos (name, code_id, weight, price, size, create_at) VALUES ('Tabique Canal Normal 61x20x0,50 3000MM', '3250-03000', 1.17, 0, '3000MM', NOW());
+INSERT INTO productos (name, code_id, weight, price, size, create_at) VALUES ('Tabique Canal Normal 61x20x0,50 3000MM', '3250-03000', 1.17, 0, '3000MM', NOW());
+
 
 ## Morteros
 ##INSERT INTO productos (name, code_id, weight, price, size, create_at) VALUES ('Mortero', 'ndunudnw', 25, 2600, '', NOW());
