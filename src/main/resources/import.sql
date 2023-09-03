@@ -1,6 +1,17 @@
 ##Perfiles
 INSERT INTO cliente (name, rut, email) VALUES ('Andres', '26931652-7', 'Andresseo.95@gmail.com');
 INSERT INTO vendedor(name) VALUES ('Andres');
+
+## Categorias
+##INSERT INTO categorias(name) VALUES ('Acero');
+##INSERT INTO categorias(name) VALUES ('Metalcom');
+##INSERT INTO categorias(name) VALUES ('Adhesivo');
+##INSERT INTO categorias(name) VALUES ('Mortero');
+##INSERT INTO categorias(name) VALUES ('Yeso Carton');
+##INSERT INTO categorias(name) VALUES ('Aislante');
+##INSERT INTO categorias(name) VALUES ('Fibrocemento');
+
+
 ##Productos
     ## Acero
         ## Perfiles Montantes
