@@ -1,5 +1,7 @@
 package com.example.globalgtcbackend.controllers;
 
+import com.example.globalgtcbackend.models.dto.ProductoDTO;
+import com.example.globalgtcbackend.models.entity.Categoria;
 import com.example.globalgtcbackend.models.entity.Producto;
 import com.example.globalgtcbackend.service.IProductoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,7 @@ public class ProductoController {
     @RequestMapping(value = "/producto", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody Producto producto, BindingResult result) {
         Producto nuevoProducto = null;
+        Categoria categoria = productoService.findCategoriaById(producto.getCategoria().getCategoria_id());
         Map<String, Object> response = new HashMap<>();
 
         if (result.hasErrors()) {
@@ -36,6 +39,7 @@ public class ProductoController {
         }
 
         try {
+            producto.setCategoria(categoria);
             nuevoProducto = productoService.saveProducto(producto);
         } catch (DataAccessException e) {
             response.put("message", "Error al realizar el insert en la base de datos");
@@ -48,7 +52,7 @@ public class ProductoController {
     }
 
     @RequestMapping(value = "/productos", method = RequestMethod.GET)
-    public List<Producto> getAll() {
+    public List<ProductoDTO> getAll() {
         return productoService.allProductos();
     }
 
