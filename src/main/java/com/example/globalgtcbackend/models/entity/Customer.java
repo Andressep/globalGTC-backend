@@ -13,27 +13,27 @@ import java.util.List;
 @ToString
 @AllArgsConstructor
 @Entity
-@Table(name = "cliente")
-public class Cliente implements Serializable {
+@Table(name = "customer")
+public class Customer implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Integer cliente_id;
+    private Integer customerId;
     @Column(name = "name", length = 25, nullable = false)
     private String name;
     @Column(name = "rut", length = 15, nullable = false)
     private String rut;
     @Column(name = "email", length = 25, nullable = false)
     private String email;
-    @JsonIgnoreProperties(value = {"cliente", "hibernateLazyInitializer", "handler"})
-    @OneToMany(mappedBy = "cliente", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private List<Cotizacion> cotizaciones;
+    @JsonIgnoreProperties(value = {"customer", "hibernateLazyInitializer", "handler"})
+    @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private List<Quotation> quotations;
 
-    public Cliente() {
-        cotizaciones = new ArrayList<>();
+    public Customer() {
+        quotations = new ArrayList<>();
     }
 
-   public void agregarCotizaciones(Cotizacion cotizacion) {
-        cotizaciones.add(cotizacion);
+   public void addQuotation(Quotation quotation) {
+        quotations.add(quotation);
     }
 
     private static final long serialVersionUID = 1L;

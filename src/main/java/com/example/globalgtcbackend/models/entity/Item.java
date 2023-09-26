@@ -13,21 +13,24 @@ import java.io.Serializable;
 @ToString
 @Entity
 @Table(name = "items")
-public class Items implements Serializable {
+public class Item implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer item_id;
-    private int cantidad;
+    private Integer itemId;
+
+    private int quantity; // Cambiado "cantidad" a "quantity"
+
     @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "producto_id")
-    private Producto producto;
+    @JoinColumn(name = "product_id") // Cambiado "producto_id" a "product_id"
+    private Product product; // Cambiado "producto" a "product"
 
-    public Items() {
+    public Item() {
     }
-    public int calcular() {
-        return cantidad * producto.getPrice();
+
+    public int calculate() {
+        return quantity * product.getPrice();
     }
 
     private static final long serialVersionUID = 1L;

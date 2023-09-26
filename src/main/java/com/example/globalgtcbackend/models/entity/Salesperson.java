@@ -2,7 +2,6 @@ package com.example.globalgtcbackend.models.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.GenericGenerator;
 
 import java.io.Serializable;
 
@@ -12,11 +11,11 @@ import java.io.Serializable;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "vendedor")
-public class Vendedor implements Serializable {
+@Table(name = "salesperson")
+public class Salesperson implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Integer vendedor_id;
+    private Integer SalespersonId;
     @Column(name = "name")
     private String name;
 

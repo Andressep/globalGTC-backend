@@ -16,48 +16,48 @@ import java.util.List;
 @Setter
 @ToString
 @Entity
-@Table(name = "cotizaciones")
-public class Cotizacion implements Serializable {
+@Table(name = "quotations")
+public class Quotation implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Integer cotizacion_id;
+    private Integer QuotationId;
     @Temporal(TemporalType.DATE)
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @DateTimeFormat(pattern = "dd-MM-yyy")
     @Column(name = "create_at")
     private LocalDate createAt;
-    @JsonIgnoreProperties({"cotizaciones", "hibernateLazyInitializer", "handler"})
+    @JsonIgnoreProperties({"quotations", "hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "cliente_id")
-    private Cliente cliente;
+    @JoinColumn(name = "customer_id")
+    private Customer customer;
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "vendedor_id")
-    private Vendedor vendedor;
+    @JoinColumn(name = "salesperson_id")
+    private Salesperson salesperson;
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "cotizacion_id")
-    private List<Items> productos;
+    @JoinColumn(name = "quotation_id")
+    private List<Item> items;
 
-    public Cotizacion() {
-        productos = new ArrayList<>();
+    public Quotation() {
+        items = new ArrayList<>();
     }
     @PrePersist
     public void prePersist() { createAt = LocalDate.now(); }
-    public Cotizacion(Integer id, Cliente cliente, Vendedor vendedor) {
-        this.cotizacion_id = id;
-        this.cliente = cliente;
-        this.vendedor = vendedor;
-        productos = new ArrayList<>();
+    public Quotation(Integer id, Customer customer, Salesperson salesperson) {
+        this.QuotationId = id;
+        this.customer = customer;
+        this.salesperson = salesperson;
+        items = new ArrayList<>();
     }
-    public void addProductosCotizacion(Items items) {
-        this.productos.add(items);
+    public void addProductosCotizacion(Item items) {
+        this.items.add(items);
     }
     public int getTotal() {
         int total = 0;
-        int size = productos.size();
+        int size = items.size();
 
         for (int i = 0; i < size; i++) {
-            total += productos.get(i).calcular();
+            total += items.get(i).calculate();
         }
         return total;
     }

@@ -9,9 +9,9 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class ProductoDTO implements Serializable {
+public class ProductDTO implements Serializable {
 
-    private Integer producto_id;
+    private Integer productId;
     private String name;
     private int price;
     private double weight;

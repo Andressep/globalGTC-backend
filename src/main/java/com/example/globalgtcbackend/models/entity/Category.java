@@ -6,17 +6,17 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serializable;
-import java.util.List;
 
 @Getter
 @Setter
 @ToString
 @Entity
-@Table(name = "categoria")
-public class Categoria implements Serializable {
+@Table(name = "category")
+public class Category implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer categoria_id;
+    private Integer categoryId;
+
     @Column(name = "name")
     private String name;
 

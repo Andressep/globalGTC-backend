@@ -13,26 +13,36 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ToString
 @Entity
-@Table(name = "productos")
-public class Producto implements Serializable {
+@Table(name = "products")
+public class Product implements Serializable {
     @Id
-    @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Integer producto_id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer productId;
+
     private String name;
-    private String code_id;
+
+    @Column(name = "code_id")
+    private String codeId;
+
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinColumn(name = "categoria_id")
-    private Categoria categoria;
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     private String size;
+
     private int price;
+
     private double weight;
+
     @Temporal(TemporalType.DATE)
-    @Column(name = "create_at")
-    private LocalDate createAt;
+    @Column(name = "created_at")
+    private LocalDate createdAt; // Cambiado "createAt" a "createdAt"
 
     @PrePersist
-    public void prePersist() { createAt = LocalDate.now(); }
+    public void prePersist() {
+        createdAt = LocalDate.now();
+    }
 
     private static final long serialVersionUID = 1L;
 }
