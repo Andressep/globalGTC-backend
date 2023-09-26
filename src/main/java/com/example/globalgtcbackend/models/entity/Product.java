@@ -19,9 +19,10 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
 
+    @Column(name = "name", length = 50, nullable = false)
     private String name;
 
-    @Column(name = "code_id")
+    @Column(name = "code_id", length = 10)
     private String codeId;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})

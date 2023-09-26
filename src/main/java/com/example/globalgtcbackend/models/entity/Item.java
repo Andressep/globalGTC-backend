@@ -19,12 +19,13 @@ public class Item implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer itemId;
 
-    private int quantity; // Cambiado "cantidad" a "quantity"
+    @Column(name = "quantity", nullable = false)
+    private int quantity;
 
     @JsonIgnoreProperties(value = {"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "product_id") // Cambiado "producto_id" a "product_id"
-    private Product product; // Cambiado "producto" a "product"
+    @JoinColumn(name = "product_id")
+    private Product product;
 
     public Item() {
     }

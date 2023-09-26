@@ -16,7 +16,7 @@ public class Salesperson implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer SalespersonId;
-    @Column(name = "name")
+    @Column(name = "name", length = 15, nullable = false)
     private String name;
 
     private static final long serialVersionUID = 1L;
