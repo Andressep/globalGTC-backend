@@ -1,5 +1,6 @@
 package com.example.globalgtcbackend.controllers;
 
+import com.example.globalgtcbackend.mappers.ProductMapper;
 import com.example.globalgtcbackend.models.dto.ProductDTO;
 import com.example.globalgtcbackend.models.entity.Category;
 import com.example.globalgtcbackend.models.entity.Product;
@@ -22,6 +23,8 @@ public class ProductController {
 
     @Autowired
     private IProductService productService;
+    @Autowired
+    private ProductMapper productMapper;
 
     @RequestMapping(value = "/create", produces = "application/json", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody Product product, BindingResult result) {
@@ -60,26 +63,28 @@ public class ProductController {
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> show(@PathVariable Integer id) {
         Product product = null;
+        ProductDTO productDTO;
         Map<String, Object> response = new HashMap<>();
 
         try {
             product = productService.findProductById(id);
+            productDTO = productMapper.toDTO(product);
         } catch (DataAccessException e) {
             response.put("message", "Error while searching the database");
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        if (product == null) {
+        if (productDTO == null) {
             response.put("message", "Product ID: ".concat(id.toString()).concat(" does not exist in the database"));
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(product, HttpStatus.OK);
+        return new ResponseEntity<>(productDTO, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@RequestBody Product product, BindingResult result, @PathVariable Integer id) {
         Product currentProduct = productService.findProductById(id);
-        Product updatedProduct = null;
+        ProductDTO productDTO = null;
 
         Map<String, Object> response = new HashMap<>();
 
@@ -96,18 +101,18 @@ public class ProductController {
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
         try {
-            currentProduct.setName(product.getName());
+            currentProduct.setDescription(product.getDescription());
             currentProduct.setPrice(product.getPrice());
-            currentProduct.setSize(product.getSize());
+            currentProduct.setLength(product.getLength());
             currentProduct.setWeight(product.getWeight());
-            updatedProduct = productService.saveProduct(currentProduct);
+            productDTO = productMapper.toDTO(currentProduct);
         } catch (DataAccessException e) {
             response.put("message", "Error while updating the database.");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         response.put("message", "The product has been updated successfully");
-        response.put("product", updatedProduct);
+        response.put("product", productDTO);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 

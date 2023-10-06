@@ -1,5 +1,7 @@
 package com.example.globalgtcbackend.service.impl;
 
+import com.example.globalgtcbackend.mappers.QuotationMapper;
+import com.example.globalgtcbackend.models.dto.QuotationDTO;
 import com.example.globalgtcbackend.models.entity.Customer;
 import com.example.globalgtcbackend.models.entity.Product;
 import com.example.globalgtcbackend.models.entity.Quotation;
@@ -11,7 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.util.*;
 
 @Service
 public class CustomerServiceImpl implements ICustomerService {
@@ -23,7 +25,8 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Autowired
     private IProductDao productDao;
-
+    @Autowired
+    private QuotationMapper quotationMapper;
     @Override
     @Transactional(readOnly = true)
     public List<Customer> getAllCustomers() {
@@ -52,8 +55,8 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     @Transactional(readOnly = true)
-    public List<Quotation> getAllQuotations() {
-        return quotationDao.findAll();
+    public List<QuotationDTO> getAllQuotations() {
+        return quotationMapper.toDTOList(quotationDao.findAll());
     }
 
     @Override
@@ -73,10 +76,15 @@ public class CustomerServiceImpl implements ICustomerService {
     public void deleteQuotation(Integer id) {
         quotationDao.deleteById(id);
     }
+    public Optional<Quotation> findQuotationsByCustomerId(Integer customerId) {
+        return quotationDao.findByCustomerCustomerId(customerId);
+    }
 
     @Override
     @Transactional(readOnly = true)
     public List<Product> findByProductName(String term) {
         return productDao.findByProductName(term);
     }
+
+
 }

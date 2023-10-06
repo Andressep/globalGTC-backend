@@ -1,6 +1,6 @@
 package com.example.globalgtcbackend.service.impl;
 
-import com.example.globalgtcbackend.mappers.ProductDTOMapper;
+import com.example.globalgtcbackend.mappers.ProductMapper;
 import com.example.globalgtcbackend.models.dto.ProductDTO;
 import com.example.globalgtcbackend.models.entity.Category;
 import com.example.globalgtcbackend.models.entity.Product;
@@ -24,15 +24,11 @@ public class ProductServiceImpl implements IProductService {
     private ICategoryDao categoryDao;
 
     @Autowired
-    private ProductDTOMapper productDTOMapper;
-
+    private ProductMapper productMapper;
     @Override
     @Transactional(readOnly = true)
     public List<ProductDTO> getAllProducts() {
-        return productDao.findAll()
-                .stream()
-                .map(productDTOMapper)
-                .collect(Collectors.toList());
+        return productMapper.toDTOList(productDao.findAll());
     }
 
     @Override

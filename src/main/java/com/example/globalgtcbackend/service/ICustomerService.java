@@ -1,5 +1,6 @@
 package com.example.globalgtcbackend.service;
 
+import com.example.globalgtcbackend.models.dto.QuotationDTO;
 import com.example.globalgtcbackend.models.entity.Customer;
 import com.example.globalgtcbackend.models.entity.Product;
 import com.example.globalgtcbackend.models.entity.Quotation;
@@ -14,7 +15,7 @@ public interface ICustomerService {
     void deleteCustomer(Integer id);
 
     // Quotations
-    List<Quotation> getAllQuotations();
+    List<QuotationDTO> getAllQuotations();
     Quotation findQuotationById(Integer id);
     Quotation saveQuotation(Quotation quotation);
     void deleteQuotation(Integer id);

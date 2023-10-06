@@ -20,7 +20,7 @@ import java.util.List;
 public class Quotation implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
-    private Integer QuotationId;
+    private Integer quotationId;
     @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd-MM-yyy")
     @Column(name = "create_at")
@@ -36,31 +36,32 @@ public class Quotation implements Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "quotation_id")
-    private List<Item> items;
+    private List<QuotationDetails> quotationDetails;
 
     public Quotation() {
-        items = new ArrayList<>();
+        quotationDetails = new ArrayList<>();
     }
-    @PrePersist
-    public void prePersist() { createAt = LocalDate.now(); }
     public Quotation(Integer id, Customer customer, Salesperson salesperson) {
-        this.QuotationId = id;
+        this.quotationId = id;
         this.customer = customer;
         this.salesperson = salesperson;
-        items = new ArrayList<>();
+        quotationDetails = new ArrayList<>();
     }
-    public void addProductosCotizacion(Item items) {
-        this.items.add(items);
+    public void addProductosCotizacion(QuotationDetails items) {
+        this.quotationDetails.add(items);
     }
     public int getTotal() {
         int total = 0;
-        int size = items.size();
+        int size = quotationDetails.size();
 
         for (int i = 0; i < size; i++) {
-            total += items.get(i).calculate();
+            total += quotationDetails.get(i).calculate();
         }
         return total;
     }
-
+    @PrePersist
+    public void prePersist() {
+        createAt = LocalDate.now();
+    }
     private static final long serialVersionUID = 1L;
 }

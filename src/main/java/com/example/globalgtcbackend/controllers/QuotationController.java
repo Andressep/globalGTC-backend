@@ -1,5 +1,6 @@
 package com.example.globalgtcbackend.controllers;
 
+import com.example.globalgtcbackend.models.dto.QuotationDTO;
 import com.example.globalgtcbackend.models.entity.Product;
 import com.example.globalgtcbackend.models.entity.Quotation;
 
@@ -50,7 +51,7 @@ public class QuotationController {
     }
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
-    public List<Quotation> getAll() {
+    public List<QuotationDTO> getAll() {
         return customerService.getAllQuotations();
     }
 
@@ -101,7 +102,7 @@ public class QuotationController {
         try {
             quotationCurrent.setCustomer(quotation.getCustomer());
             quotationCurrent.setSalesperson(quotation.getSalesperson());
-            quotationCurrent.setItems(quotation.getItems());
+            quotationCurrent.setQuotationDetails(quotation.getQuotationDetails());
             quotationUpdated = customerService.saveQuotation(quotationCurrent);
         } catch (DataAccessException e) {
             response.put("message", "Error while updating the database.");
@@ -126,5 +127,6 @@ public class QuotationController {
         response.put("message", "The quotation has been deleted successfully!");
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
 }
 

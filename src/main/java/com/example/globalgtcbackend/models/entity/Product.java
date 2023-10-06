@@ -19,20 +19,20 @@ public class Product implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer productId;
 
-    @Column(name = "name", length = 50, nullable = false)
-    private String name;
+    @Column(name = "description", length = 50, nullable = false)
+    private String description;
 
-    @Column(name = "code_id", length = 10)
-    private String codeId;
+    @Column(name = "code", length = 10)
+    private String code;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
 
-    private String size;
+    private String length;
 
-    private int price;
+    private double price;
 
     private double weight;
 

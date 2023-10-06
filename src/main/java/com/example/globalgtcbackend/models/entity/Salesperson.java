@@ -18,7 +18,6 @@ public class Salesperson implements Serializable {
     private Integer SalespersonId;
     @Column(name = "name", length = 15, nullable = false)
     private String name;
-
     private static final long serialVersionUID = 1L;
 
 }

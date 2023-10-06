@@ -12,8 +12,8 @@ import java.io.Serializable;
 @Setter
 @ToString
 @Entity
-@Table(name = "items")
-public class Item implements Serializable {
+@Table(name = "quotation_details")
+public class QuotationDetails implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,10 +27,10 @@ public class Item implements Serializable {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    public Item() {
+    public QuotationDetails() {
     }
 
-    public int calculate() {
+    public double calculate() {
         return quantity * product.getPrice();
     }
 
