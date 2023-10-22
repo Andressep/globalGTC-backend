@@ -13,6 +13,7 @@ INSERT INTO products (description, code, weight, price, length, category_id) VAL
 -- Insert a quotation and an item
 INSERT INTO quotations (customer_id, salesperson_id) VALUES (1, 1);
 INSERT INTO quotation_details (quotation_id, product_id, quantity) VALUES (1, 1, 2);
+INSERT INTO quotation_details (quotation_id, product_id, quantity) VALUES (1, 2, 1);
 
 --INSERT INTO quotations (customer_id, salesperson_id) VALUES (1, 1);
 --INSERT INTO quotation_details (quotation_id, product_id, quantity) VALUES (2, 1, 5);

@@ -5,13 +5,17 @@ import com.example.globalgtcbackend.models.entity.Product;
 import com.example.globalgtcbackend.models.entity.Quotation;
 
 import com.example.globalgtcbackend.service.ICustomerService;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,21 +61,21 @@ public class QuotationController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> show(@PathVariable Integer id) {
-        Quotation quotation = null;
+        QuotationDTO quotationDTO = null;
         Map<String, Object> response = new HashMap<>();
 
         try {
-            quotation = customerService.findQuotationById(id);
+            quotationDTO = customerService.findQuotationDTOById(id);
         } catch (DataAccessException e) {
             response.put("message", "Error while searching the database");
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
             return new ResponseEntity<>(response, HttpStatus.INTERNAL_SERVER_ERROR);
         }
-        if (quotation == null) {
+        if (quotationDTO == null) {
             response.put("message", "Quotation with ID: ".concat(id.toString()).concat(" does not exist in the database"));
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(quotation, HttpStatus.OK);
+        return new ResponseEntity<>(quotationDTO, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/filter/{term}")
@@ -79,7 +83,7 @@ public class QuotationController {
         return customerService.findByProductName(term);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    /*@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@RequestBody Quotation quotation, BindingResult result, @PathVariable Integer id) {
         Quotation quotationCurrent = customerService.findQuotationById(id);
         Quotation quotationUpdated = null;
@@ -112,7 +116,7 @@ public class QuotationController {
         response.put("message", "Quotation has been updated successfully");
         response.put("quotation", quotationUpdated);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
-    }
+    }*/
 
     @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable Integer id) {
@@ -126,6 +130,17 @@ public class QuotationController {
         }
         response.put("message", "The quotation has been deleted successfully!");
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+    @GetMapping("/export-pdf/{id}")
+    public ResponseEntity<byte[]> exportQuotationToPdf(@PathVariable Integer id) throws JRException, FileNotFoundException {
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_PDF);
+        headers.setContentDispositionFormData("quotationReport", "quotationReport.pdf");
+
+        // Llamar al servicio para obtener el informe PDF a partir del ID de la cotización
+        byte[] pdfBytes = customerService.exportToPdf(id);
+
+        return ResponseEntity.ok().headers(headers).body(pdfBytes);
     }
 
 }

@@ -4,7 +4,10 @@ import com.example.globalgtcbackend.models.dto.QuotationDTO;
 import com.example.globalgtcbackend.models.entity.Customer;
 import com.example.globalgtcbackend.models.entity.Product;
 import com.example.globalgtcbackend.models.entity.Quotation;
+import net.sf.jasperreports.engine.JRException;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 public interface ICustomerService {
@@ -16,9 +19,12 @@ public interface ICustomerService {
 
     // Quotations
     List<QuotationDTO> getAllQuotations();
-    Quotation findQuotationById(Integer id);
+    @Transactional(readOnly = true)
+    QuotationDTO findQuotationDTOById(Integer id);
+
     Quotation saveQuotation(Quotation quotation);
     void deleteQuotation(Integer id);
+    public byte[] exportToPdf(Integer id)throws JRException, FileNotFoundException;
 
     // Native Queries
     List<Product> findByProductName(String term);
