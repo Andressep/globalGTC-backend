@@ -10,7 +10,6 @@ import org.springframework.util.ResourceUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,6 +26,11 @@ public class QuotationReportGeneration {
         Map<String, Object> params = new HashMap<>();
         params.put("quotationDto", quotationDto);
         params.put("companyLogo", new FileInputStream(imgLogo));
+        params.put("customerName", quotationDto.getCustomerName().toUpperCase());
+        params.put("customerRut", quotationDto.getCustomerRut());
+        params.put("customerPhoneNumber", quotationDto.getCustomerPhoneNumber());
+        params.put("customerAddress", quotationDto.getCustomerAddress().toUpperCase());
+        params.put("salespersonName", quotationDto.getSalespersonName().toUpperCase());
         params.put("ds", new JRBeanCollectionDataSource(quotationDto.getQuotationDetailsList()));
 
         JasperPrint report = JasperFillManager.fillReport(JasperCompileManager.compileReport(

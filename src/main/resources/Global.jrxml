@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Created with Jaspersoft Studio version 6.20.6.final using JasperReports Library version 6.20.6-5c96b6aa8a39ac1dc6b6bea4b81168e16dd39231  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Global" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="b75e096a-6e88-41e0-83a2-e0c25515fb54">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Global" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="b75e096a-6e88-41e0-83a2-e0c25515fb54">
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
@@ -42,6 +42,11 @@
 	</subDataset>
 	<parameter name="companyLogo" class="java.io.InputStream"/>
 	<parameter name="ds" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="customerName" class="java.lang.String"/>
+	<parameter name="customerRut" class="java.lang.String"/>
+	<parameter name="customerPhoneNumber" class="java.lang.String"/>
+	<parameter name="customerAddress" class="java.lang.String"/>
+	<parameter name="salespersonName" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -49,7 +54,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="128" splitType="Stretch">
+		<band height="140" splitType="Stretch">
 			<image onErrorType="Blank">
 				<reportElement x="0" y="0" width="160" height="88" uuid="d7ae5d4a-5e78-4eaf-a34e-34b35f4d2bcb"/>
 				<imageExpression><![CDATA[$P{companyLogo}]]></imageExpression>
@@ -67,38 +72,45 @@
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textElement>
-					<font fontName="Arial Rounded MT Bold" size="9" isBold="false"/>
+					<font fontName="Arial Rounded MT Bold" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[GIRO: VENTA DE MATERIALES DE CONSTRUCCION]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="210" y="36" width="180" height="14" uuid="3de4c77d-1aa5-47e3-9b85-935242572f6d"/>
 				<textElement>
-					<font fontName="Arial Rounded MT Bold" size="9" isBold="false"/>
+					<font fontName="Arial Rounded MT Bold" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[AVDA. LO OVALLE 559, LA CISTERNA]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="170" y="50" width="270" height="20" uuid="60d0c234-d947-46a7-aa37-d1148eaa29dd"/>
 				<textElement>
-					<font fontName="Arial Rounded MT Bold" size="9" isBold="false"/>
+					<font fontName="Arial Rounded MT Bold" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Teléfono + 56 228918421  -  Email: robinsonsep@globalgtc.cl]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="250" y="70" width="80" height="14" uuid="e3d67c57-4153-4611-94f4-ae55f356bd32"/>
+				<reportElement x="249" y="63" width="80" height="14" uuid="e3d67c57-4153-4611-94f4-ae55f356bd32"/>
 				<textElement>
 					<font fontName="Arial Rounded MT Bold" size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[RUT 76.729.575-8]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="386" y="98" width="54" height="22" uuid="81026651-c2c8-48bf-873a-379aee133b38"/>
+				<reportElement x="381" y="98" width="58" height="22" uuid="81026651-c2c8-48bf-873a-379aee133b38"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial Rounded MT Bold" size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Santiago,]]></text>
 			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="420" y="99" width="100" height="20" uuid="c4ed143f-03ec-4fd0-b232-b8d9efd6fdf3"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
 	<pageHeader>
@@ -117,16 +129,23 @@
 				</textElement>
 				<text><![CDATA[Nombre Cliente:]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="80" y="38" width="192" height="12" uuid="edd44773-78c7-45a8-a378-f57d783f7d49"/>
+				<textElement textAlignment="Left">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{customerName}]]></textFieldExpression>
+			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="235" splitType="Stretch">
+		<band height="290" splitType="Stretch">
 			<staticText>
 				<reportElement x="0" y="0" width="100" height="20" uuid="1d704717-1837-4141-8982-7f2e86f9bfef"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial Rounded MT Bold" size="11" isBold="false"/>
 				</textElement>
-				<text><![CDATA[NodeTeléfono: 56]]></text>
+				<text><![CDATA[Teléfono: 56]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="0" y="20" width="69" height="14" uuid="c2cffcb3-aa7c-4fae-b417-8552bfc0fe52"/>
@@ -151,124 +170,8 @@
 				</textElement>
 				<text><![CDATA[ Vendedor:]]></text>
 			</staticText>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="272" splitType="Stretch">
-			<staticText>
-				<reportElement x="1" y="50" width="80" height="20" uuid="8c3b0dcd-5a66-4891-8cfb-6f8f7969a035"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11" isBold="false"/>
-				</textElement>
-				<text><![CDATA[Observación:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="1" y="70" width="250" height="30" uuid="dd155b65-e710-41a6-8946-26d9d5407f34"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="9"/>
-				</textElement>
-				<text><![CDATA[OFERTA VALIDA 1 DÍA, SUJETO A CONFIRMACIÓN DE MATERIALES]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="301" y="87" width="70" height="18" uuid="f1169bba-7cef-4a65-9db5-772f4d699f04"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[SUB-TOTAL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="301" y="69" width="58" height="18" uuid="a4559038-8777-44ef-93f9-8dfc5840e618"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[Descuento]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="302" y="104" width="69" height="18" uuid="1a5a43a1-6376-4d1b-91b3-9272353b8a50"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[IVA 19%]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="300" y="51" width="59" height="18" uuid="839a8ff6-26c3-451c-9ad0-a726fe4b74dd"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[Sub Total]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="146" width="99" height="18" uuid="b3d30b88-93b1-4327-b889-f8c62ed4a243"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[RUT: 76.729.575-8]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="128" width="249" height="18" uuid="a68a9bd1-0a90-41f0-9d47-2e0e192e0816"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[IMPORT & EXPORT CONSTRUCTORA GTC SPA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="164" width="184" height="18" forecolor="#0977DE" uuid="cf50a2f3-d787-4a50-a96a-ddaf7230e97f"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[robinsonsep@globalgtc.cl]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="230" width="69" height="18" uuid="ec20cbab-9c32-4960-ad51-fbd1dff7e48b"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[OBRA:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="110" width="249" height="18" forecolor="#F0170C" uuid="07922823-3ce4-44e5-b45a-3607795cae31"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11" isBold="true"/>
-				</textElement>
-				<text><![CDATA[DATOS PARA TRANSFERENCIA BANCARIA]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="282" y="122" width="99" height="18" uuid="d3939633-d42a-4a65-8c06-8184cefd12a6"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[TOTAL A PAGAR]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="300" y="200" width="160" height="18" forecolor="#F0120E" uuid="7a9e4fea-8d02-4987-a3af-33a2807540e2"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[FORMA DE PAGO: CONTADO]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="302" y="164" width="69" height="18" uuid="c146d737-3943-4e10-b30f-9d2702849c88"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[TOTAL KG]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="182" width="219" height="18" uuid="284a39ed-ae63-49f6-8b04-15815295d1d4"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[BANCO DE CHILE CTA NRO 1450688210]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="200" width="230" height="18" uuid="baf214bd-15d2-4b08-a523-19ba05c8418f"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[BANCO ESTADO CTA NRO. 36000013832]]></text>
-			</staticText>
 			<componentElement>
-				<reportElement x="0" y="-185" width="560" height="225" uuid="f5d8dfc4-01b3-4d5f-9f89-b4b1199e6454">
+				<reportElement x="0" y="35" width="550" height="255" uuid="f5d8dfc4-01b3-4d5f-9f89-b4b1199e6454">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -441,6 +344,155 @@
 					</jr:column>
 				</jr:table>
 			</componentElement>
+			<textField>
+				<reportElement x="380" y="4" width="100" height="16" uuid="b3a9db18-a47b-4337-9f20-8448e355fb2e"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{customerRut}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="4" width="145" height="16" uuid="48a2dece-ff7a-4712-895b-c0ee9f8e3811"/>
+				<textElement verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{customerPhoneNumber}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="65" y="13" width="250" height="25" uuid="902e0bf1-855a-4e37-8f4e-64d3559df028">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{customerAddress}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="400" y="18" width="150" height="18" uuid="5e14fdc0-a51a-4a75-9dd8-d56a33fcdcbc"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{salespersonName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="272" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="50" width="80" height="20" uuid="8c3b0dcd-5a66-4891-8cfb-6f8f7969a035"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Observación:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="70" width="250" height="30" uuid="dd155b65-e710-41a6-8946-26d9d5407f34"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="9"/>
+				</textElement>
+				<text><![CDATA[OFERTA VALIDA 1 DÍA, SUJETO A CONFIRMACIÓN DE MATERIALES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="87" width="70" height="18" uuid="f1169bba-7cef-4a65-9db5-772f4d699f04"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="11"/>
+				</textElement>
+				<text><![CDATA[SUB-TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="69" width="58" height="18" uuid="a4559038-8777-44ef-93f9-8dfc5840e618"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="11"/>
+				</textElement>
+				<text><![CDATA[Descuento]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="302" y="104" width="69" height="18" uuid="1a5a43a1-6376-4d1b-91b3-9272353b8a50"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="11"/>
+				</textElement>
+				<text><![CDATA[IVA 19%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="51" width="59" height="18" uuid="839a8ff6-26c3-451c-9ad0-a726fe4b74dd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="11"/>
+				</textElement>
+				<text><![CDATA[Sub Total]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="146" width="99" height="18" uuid="b3d30b88-93b1-4327-b889-f8c62ed4a243"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="11"/>
+				</textElement>
+				<text><![CDATA[RUT: 76.729.575-8]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="128" width="249" height="18" uuid="a68a9bd1-0a90-41f0-9d47-2e0e192e0816"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="11"/>
+				</textElement>
+				<text><![CDATA[IMPORT & EXPORT CONSTRUCTORA GTC SPA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="164" width="184" height="18" forecolor="#0977DE" uuid="cf50a2f3-d787-4a50-a96a-ddaf7230e97f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[robinsonsep@globalgtc.cl]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="230" width="69" height="18" uuid="ec20cbab-9c32-4960-ad51-fbd1dff7e48b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="11"/>
+				</textElement>
+				<text><![CDATA[OBRA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="110" width="249" height="18" forecolor="#F0170C" uuid="07922823-3ce4-44e5-b45a-3607795cae31"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[DATOS PARA TRANSFERENCIA BANCARIA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="282" y="122" width="99" height="18" uuid="d3939633-d42a-4a65-8c06-8184cefd12a6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="11"/>
+				</textElement>
+				<text><![CDATA[TOTAL A PAGAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="200" width="160" height="18" forecolor="#F0120E" uuid="7a9e4fea-8d02-4987-a3af-33a2807540e2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="11"/>
+				</textElement>
+				<text><![CDATA[FORMA DE PAGO: CONTADO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="302" y="164" width="69" height="18" uuid="c146d737-3943-4e10-b30f-9d2702849c88"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="11"/>
+				</textElement>
+				<text><![CDATA[TOTAL KG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="182" width="219" height="18" uuid="284a39ed-ae63-49f6-8b04-15815295d1d4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="11"/>
+				</textElement>
+				<text><![CDATA[BANCO DE CHILE CTA NRO 1450688210]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="200" width="230" height="18" uuid="baf214bd-15d2-4b08-a523-19ba05c8418f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="11"/>
+				</textElement>
+				<text><![CDATA[BANCO ESTADO CTA NRO. 36000013832]]></text>
+			</staticText>
 		</band>
 	</detail>
 	<columnFooter>

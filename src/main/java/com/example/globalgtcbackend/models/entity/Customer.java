@@ -24,7 +24,7 @@ public class Customer implements Serializable {
     private String phone;
     @Column(name = "rut", length = 15)
     private String rut;
-    @Column(name = "adress", length = 25)
+    @Column(name = "address", length = 45)
     private String address;
     @Column(name = "email", length = 25, nullable = false)
     private String email;

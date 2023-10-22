@@ -1,5 +1,5 @@
 -- Insert a customer
-INSERT INTO customer (name, rut, email) VALUES ('Andres', '26931652-7', 'andresseo.95@gmail.com');
+INSERT INTO customer (name, rut, email, phone, address) VALUES ('Andres', '26931652-7', 'andresseo.95@gmail.com', '(9) 3707 8878', 'La Cisterna, Region Metropolitana');
 
 -- Insert a salesperson and a category
 INSERT INTO salesperson (name) VALUES ('Andres');
