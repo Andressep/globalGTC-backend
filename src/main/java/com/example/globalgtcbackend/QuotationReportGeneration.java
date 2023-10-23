@@ -3,13 +3,14 @@ package com.example.globalgtcbackend;
 import com.example.globalgtcbackend.models.dto.QuotationDTO;
 import net.sf.jasperreports.engine.*;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -18,8 +19,18 @@ public class QuotationReportGeneration {
 
 
     public byte[] exportToPdf(QuotationDTO quotationDTO) throws JRException, FileNotFoundException {
-        return JasperExportManager.exportReportToPdf(getReport(quotationDTO));
+        JasperPrint report = getReport(quotationDTO);
+
+        LocalDateTime currentTime = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
+        String timestamp = currentTime.format(formatter);
+
+        String fileName = "/Users/andressepulveda/Desktop/JasperReport/report_" + timestamp + ".pdf";
+        JasperExportManager.exportReportToPdfFile(report, fileName);
+        return JasperExportManager.exportReportToPdf(report);
     }
+
+
 
     private JasperPrint getReport(QuotationDTO quotationDto) throws JRException, FileNotFoundException {
         File imgLogo = ResourceUtils.getFile("classpath:images/globalGTC.jpg");
