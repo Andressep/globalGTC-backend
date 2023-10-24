@@ -1,6 +1,6 @@
 package com.example.globalgtcbackend.service.impl;
 
-import com.example.globalgtcbackend.QuotationReportGeneration;
+import com.example.globalgtcbackend.utils.QuotationReportGeneration;
 import com.example.globalgtcbackend.mappers.QuotationMapper;
 import com.example.globalgtcbackend.models.dto.QuotationDTO;
 import com.example.globalgtcbackend.models.entity.Customer;
@@ -91,7 +91,6 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public byte[] exportToPdf(Integer id) throws JRException, FileNotFoundException {
-
         return quotationReportGeneration.exportToPdf(findQuotationDTOById(id));
     }
 

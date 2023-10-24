@@ -21,10 +21,9 @@ public class Quotation implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer quotationId;
-    @Temporal(TemporalType.DATE)
     @DateTimeFormat(pattern = "dd-MM-yyy")
-    @Column(name = "create_at")
-    private LocalDate createAt;
+    @Column(name = "created_at")
+    private LocalDate createdAt;
     @JsonIgnoreProperties({"quotations", "hibernateLazyInitializer", "handler"})
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "customer_id")
@@ -61,7 +60,7 @@ public class Quotation implements Serializable {
     }
     @PrePersist
     public void prePersist() {
-        createAt = LocalDate.now();
+        createdAt = LocalDate.now();
     }
     private static final long serialVersionUID = 1L;
 }

@@ -47,6 +47,7 @@
 	<parameter name="customerPhoneNumber" class="java.lang.String"/>
 	<parameter name="customerAddress" class="java.lang.String"/>
 	<parameter name="salespersonName" class="java.lang.String"/>
+	<parameter name="createdAt" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -104,12 +105,10 @@
 				</textElement>
 				<text><![CDATA[Santiago,]]></text>
 			</staticText>
-			<textField pattern="MMMMM dd, yyyy">
-				<reportElement x="420" y="99" width="100" height="20" uuid="c4ed143f-03ec-4fd0-b232-b8d9efd6fdf3"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			<textField>
+				<reportElement x="430" y="99" width="100" height="20" uuid="6af630a8-9135-457f-ab48-b110a85a5d15"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{createdAt}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

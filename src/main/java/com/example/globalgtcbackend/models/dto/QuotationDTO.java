@@ -2,6 +2,8 @@ package com.example.globalgtcbackend.models.dto;
 
 import lombok.*;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Getter
@@ -11,6 +13,7 @@ import java.util.List;
 @ToString
 public class QuotationDTO {
     private Integer quotationId;
+    private String createdAt;
     private String customerName;
     private String customerPhoneNumber;
     private String customerAddress;

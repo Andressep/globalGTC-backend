@@ -1,4 +1,4 @@
-package com.example.globalgtcbackend;
+package com.example.globalgtcbackend.utils;
 
 import com.example.globalgtcbackend.models.dto.QuotationDTO;
 import net.sf.jasperreports.engine.*;
@@ -27,11 +27,9 @@ public class QuotationReportGeneration {
 
         String fileName = "/Users/andressepulveda/Desktop/JasperReport/report_" + timestamp + ".pdf";
         JasperExportManager.exportReportToPdfFile(report, fileName);
+
         return JasperExportManager.exportReportToPdf(report);
     }
-
-
-
     private JasperPrint getReport(QuotationDTO quotationDto) throws JRException, FileNotFoundException {
         File imgLogo = ResourceUtils.getFile("classpath:images/globalGTC.jpg");
         Map<String, Object> params = new HashMap<>();
@@ -42,6 +40,7 @@ public class QuotationReportGeneration {
         params.put("customerPhoneNumber", quotationDto.getCustomerPhoneNumber());
         params.put("customerAddress", quotationDto.getCustomerAddress().toUpperCase());
         params.put("salespersonName", quotationDto.getSalespersonName().toUpperCase());
+        params.put("createdAt", quotationDto.getCreatedAt());
         params.put("ds", new JRBeanCollectionDataSource(quotationDto.getQuotationDetailsList()));
 
         JasperPrint report = JasperFillManager.fillReport(JasperCompileManager.compileReport(

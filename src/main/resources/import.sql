@@ -11,7 +11,7 @@ INSERT INTO products (description, code, weight, price, length, category_id) VAL
 INSERT INTO products (description, code, weight, price, length, category_id) VALUES ('Perfil C 2x2x0.85 40x38x8x0.85 3000MM', '2000-03000', 3.4, 1200.0, '3000MM', 1);
 
 -- Insert a quotation and an item
-INSERT INTO quotations (customer_id, salesperson_id) VALUES (1, 1);
+INSERT INTO quotations (customer_id, salesperson_id, created_at) VALUES (1, 1, NOW());
 INSERT INTO quotation_details (quotation_id, product_id, quantity) VALUES (1, 1, 2);
 INSERT INTO quotation_details (quotation_id, product_id, quantity) VALUES (1, 2, 1);
 

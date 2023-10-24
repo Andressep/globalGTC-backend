@@ -7,8 +7,12 @@ import com.example.globalgtcbackend.models.entity.QuotationDetails;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.stream.Collectors;
 
 @Component
@@ -22,6 +26,10 @@ public class QuotationMapper {
 
     public QuotationDTO toDTO(Quotation quotation) {
         QuotationDTO quotationDTO = modelMapper.map(quotation, QuotationDTO.class);
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("es", "ES")); // Define tu formato aquí
+        String formattedDate = quotation.getCreatedAt().format(formatter);
+        quotationDTO.setCreatedAt(formattedDate);
 
         quotationDTO.setCustomerName(quotation.getCustomer().getName());
         quotationDTO.setCustomerPhoneNumber(quotation.getCustomer().getPhone());
