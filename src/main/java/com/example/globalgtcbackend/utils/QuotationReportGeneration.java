@@ -41,6 +41,10 @@ public class QuotationReportGeneration {
         params.put("customerAddress", quotationDto.getCustomerAddress().toUpperCase());
         params.put("salespersonName", quotationDto.getSalespersonName().toUpperCase());
         params.put("createdAt", quotationDto.getCreatedAt());
+        params.put("subTotal", quotationDto.getSubTotal());
+        params.put("tax", quotationDto.getTax());
+        params.put("totalPayment", quotationDto.getTotalPayment());
+        params.put("totalWeight", quotationDto.getTotalWeight());
         params.put("ds", new JRBeanCollectionDataSource(quotationDto.getQuotationDetailsList()));
 
         JasperPrint report = JasperFillManager.fillReport(JasperCompileManager.compileReport(

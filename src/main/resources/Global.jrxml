@@ -22,9 +22,9 @@
 	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
 		<box>
 			<pen lineWidth="0.5" lineColor="#000000"/>
-			<topPen lineWidth="0.5" lineColor="#000000"/>
+			<topPen lineWidth="0.5" lineColor="#FFFFFF"/>
 			<leftPen lineWidth="0.5" lineColor="#000000"/>
-			<bottomPen lineWidth="0.5" lineColor="#000000"/>
+			<bottomPen lineWidth="0.5" lineColor="#FFFFFF"/>
 			<rightPen lineWidth="0.5" lineColor="#000000"/>
 		</box>
 	</style>
@@ -48,6 +48,10 @@
 	<parameter name="customerAddress" class="java.lang.String"/>
 	<parameter name="salespersonName" class="java.lang.String"/>
 	<parameter name="createdAt" class="java.lang.String"/>
+	<parameter name="subTotal" class="java.lang.Double"/>
+	<parameter name="tax" class="java.lang.Double"/>
+	<parameter name="totalPayment" class="java.lang.Double"/>
+	<parameter name="totalWeight" class="java.lang.Double"/>
 	<queryString>
 		<![CDATA[]]>
 	</queryString>
@@ -124,7 +128,7 @@
 			<staticText>
 				<reportElement x="0" y="32" width="90" height="18" uuid="20aa23f0-f311-4b35-abbc-a0cede80fc79"/>
 				<textElement verticalAlignment="Bottom">
-					<font fontName="Arial Rounded MT Bold" size="11" isBold="false"/>
+					<font fontName="Beirut" size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Nombre Cliente:]]></text>
 			</staticText>
@@ -198,7 +202,9 @@
 									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="9"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{productCode}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -221,7 +227,9 @@
 									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="9"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -244,7 +252,9 @@
 									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="9"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -267,7 +277,9 @@
 									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="9"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -290,7 +302,9 @@
 									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="9"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{totalPrice}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -313,7 +327,9 @@
 									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="9"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{weightPerMeter}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -336,7 +352,9 @@
 									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font size="9"/>
+								</textElement>
 								<textFieldExpression><![CDATA[$F{length}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
@@ -492,6 +510,41 @@
 				</textElement>
 				<text><![CDATA[BANCO ESTADO CTA NRO. 36000013832]]></text>
 			</staticText>
+			<textField>
+				<reportElement x="410" y="51" width="74" height="18" uuid="facb52d9-0aeb-4128-af86-1c0338b8a7eb"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{subTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="84" width="74" height="16" uuid="106cf27e-15cd-4972-a1ce-86cf6a0b3220"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{subTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="103" width="74" height="20" uuid="04739426-cb2a-48d4-8508-3878bd1612d7"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tax}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="122" width="90" height="18" uuid="8b0f7848-57a7-4d4c-b854-0fea52075874"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalPayment}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="166" width="94" height="14" uuid="96448825-abdd-4a20-8bf1-b004d9ca15c4"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalWeight}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<columnFooter>
