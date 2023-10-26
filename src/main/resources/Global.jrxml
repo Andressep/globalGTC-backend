@@ -3,20 +3,20 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Global" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="b75e096a-6e88-41e0-83a2-e0c25515fb54">
 	<style name="Table_TH" mode="Opaque" backcolor="#F0F8FF">
 		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-			<topPen lineWidth="0.5" lineColor="#000000"/>
-			<leftPen lineWidth="0.5" lineColor="#000000"/>
-			<bottomPen lineWidth="0.5" lineColor="#000000"/>
-			<rightPen lineWidth="0.5" lineColor="#000000"/>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
 		</box>
 	</style>
 	<style name="Table_CH" mode="Opaque" backcolor="#FFFFFF">
 		<box>
-			<pen lineWidth="0.5" lineColor="#000000"/>
-			<topPen lineWidth="0.5" lineColor="#000000"/>
-			<leftPen lineWidth="0.5" lineColor="#000000"/>
-			<bottomPen lineWidth="0.5" lineColor="#000000"/>
-			<rightPen lineWidth="0.5" lineColor="#000000"/>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+			<topPen lineWidth="1.0" lineColor="#000000"/>
+			<leftPen lineWidth="1.0" lineColor="#000000"/>
+			<bottomPen lineWidth="1.0" lineColor="#000000"/>
+			<rightPen lineWidth="1.0" lineColor="#000000"/>
 		</box>
 	</style>
 	<style name="Table_TD" mode="Opaque" backcolor="#FFFFFF">
@@ -61,57 +61,59 @@
 	<title>
 		<band height="140" splitType="Stretch">
 			<image onErrorType="Blank">
-				<reportElement x="0" y="0" width="160" height="88" uuid="d7ae5d4a-5e78-4eaf-a34e-34b35f4d2bcb"/>
+				<reportElement x="0" y="30" width="168" height="88" uuid="d7ae5d4a-5e78-4eaf-a34e-34b35f4d2bcb"/>
 				<imageExpression><![CDATA[$P{companyLogo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="160" y="0" width="280" height="20" forecolor="#FC081C" uuid="488b4378-dfa6-4951-aa8e-22a5af4c17d4"/>
-				<textElement>
-					<font fontName="Arial Rounded MT Bold" size="12" isBold="true"/>
+				<reportElement x="180" y="30" width="230" height="20" forecolor="#FC081C" uuid="488b4378-dfa6-4951-aa8e-22a5af4c17d4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial Rounded MT Bold" size="10" isBold="true"/>
 				</textElement>
 				<text><![CDATA[IMPORT & EXPORT CONSTRUCTORA GTC SPA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="185" y="20" width="230" height="16" uuid="e535885e-601b-431a-8b7d-c4883c023467">
+				<reportElement x="190" y="50" width="206" height="10" uuid="e535885e-601b-431a-8b7d-c4883c023467">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<textElement>
-					<font fontName="Arial Rounded MT Bold" size="9" isBold="true"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[GIRO: VENTA DE MATERIALES DE CONSTRUCCION]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="210" y="36" width="180" height="14" uuid="3de4c77d-1aa5-47e3-9b85-935242572f6d"/>
+				<reportElement x="220" y="60" width="150" height="14" uuid="3de4c77d-1aa5-47e3-9b85-935242572f6d"/>
 				<textElement>
-					<font fontName="Arial Rounded MT Bold" size="9" isBold="true"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[AVDA. LO OVALLE 559, LA CISTERNA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="170" y="50" width="270" height="20" uuid="60d0c234-d947-46a7-aa37-d1148eaa29dd"/>
+				<reportElement x="170" y="73" width="250" height="12" uuid="60d0c234-d947-46a7-aa37-d1148eaa29dd"/>
 				<textElement>
-					<font fontName="Arial Rounded MT Bold" size="9" isBold="true"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Teléfono + 56 228918421  -  Email: robinsonsep@globalgtc.cl]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="249" y="63" width="80" height="14" uuid="e3d67c57-4153-4611-94f4-ae55f356bd32"/>
+				<reportElement x="255" y="85" width="80" height="14" uuid="e3d67c57-4153-4611-94f4-ae55f356bd32"/>
 				<textElement>
-					<font fontName="Arial Rounded MT Bold" size="9" isBold="false"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RUT 76.729.575-8]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="98" width="58" height="22" uuid="81026651-c2c8-48bf-873a-379aee133b38"/>
+				<reportElement x="380" y="101" width="58" height="12" uuid="81026651-c2c8-48bf-873a-379aee133b38"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11" isBold="false"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Santiago,]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="430" y="99" width="100" height="20" uuid="6af630a8-9135-457f-ab48-b110a85a5d15"/>
-				<textElement verticalAlignment="Middle"/>
+				<reportElement x="420" y="100" width="100" height="14" uuid="6af630a8-9135-457f-ab48-b110a85a5d15"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
 				<textFieldExpression><![CDATA[$P{createdAt}]]></textFieldExpression>
 			</textField>
 		</band>
@@ -119,62 +121,76 @@
 	<pageHeader>
 		<band height="50" splitType="Stretch">
 			<staticText>
-				<reportElement x="60" y="0" width="100" height="20" uuid="9f89e9f9-9bda-485f-a6e9-a8a75a533a2b"/>
+				<reportElement x="60" y="0" width="100" height="10" uuid="9f89e9f9-9bda-485f-a6e9-a8a75a533a2b"/>
 				<textElement>
-					<font fontName="Arial Rounded MT Bold" size="11" isBold="false"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Cotización Nº	]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="32" width="90" height="18" uuid="20aa23f0-f311-4b35-abbc-a0cede80fc79"/>
-				<textElement verticalAlignment="Bottom">
-					<font fontName="Beirut" size="11" isBold="false"/>
+				<reportElement x="0" y="20" width="90" height="15" uuid="20aa23f0-f311-4b35-abbc-a0cede80fc79"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Nombre Cliente:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="80" y="38" width="192" height="12" uuid="edd44773-78c7-45a8-a378-f57d783f7d49"/>
-				<textElement textAlignment="Left">
-					<font isBold="true"/>
+				<reportElement x="63" y="21" width="192" height="12" uuid="edd44773-78c7-45a8-a378-f57d783f7d49"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{customerName}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="370" y="35" width="30" height="14" uuid="585b9057-1173-403b-b394-d27b197a80c8"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ RUT:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="395" y="34" width="100" height="14" uuid="b3a9db18-a47b-4337-9f20-8448e355fb2e"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{customerRut}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="52" y="35" width="145" height="14" uuid="48a2dece-ff7a-4712-895b-c0ee9f8e3811"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{customerPhoneNumber}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="290" splitType="Stretch">
+		<band height="332" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="0" width="100" height="20" uuid="1d704717-1837-4141-8982-7f2e86f9bfef"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11" isBold="false"/>
+				<reportElement x="0" y="-15" width="100" height="12" uuid="1d704717-1837-4141-8982-7f2e86f9bfef"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Teléfono: 56]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="20" width="69" height="14" uuid="c2cffcb3-aa7c-4fae-b417-8552bfc0fe52"/>
+				<reportElement x="0" y="-3" width="69" height="14" uuid="c2cffcb3-aa7c-4fae-b417-8552bfc0fe52"/>
 				<textElement verticalAlignment="Top">
-					<font fontName="Arial Rounded MT Bold" size="11" isBold="false"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DIRECCIÓN: ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="370" y="0" width="30" height="20" uuid="585b9057-1173-403b-b394-d27b197a80c8"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11" isBold="false"/>
-				</textElement>
-				<text><![CDATA[ RUT:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="340" y="20" width="60" height="15" uuid="8a1a1dae-41ee-4f2f-9eb1-8cd10864a0bf">
+				<reportElement x="350" y="-1" width="60" height="10" uuid="8a1a1dae-41ee-4f2f-9eb1-8cd10864a0bf">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement>
-					<font fontName="Arial Rounded MT Bold" size="11" isBold="false"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[ Vendedor:]]></text>
 			</staticText>
 			<componentElement>
-				<reportElement x="0" y="35" width="550" height="255" uuid="f5d8dfc4-01b3-4d5f-9f89-b4b1199e6454">
+				<reportElement x="0" y="12" width="550" height="25" uuid="f5d8dfc4-01b3-4d5f-9f89-b4b1199e6454">
 					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.VerticalRowLayout"/>
 					<property name="com.jaspersoft.studio.table.style.table_header" value="Table_TH"/>
 					<property name="com.jaspersoft.studio.table.style.column_header" value="Table_CH"/>
@@ -184,18 +200,20 @@
 					<datasetRun subDataset="Dataset" uuid="d3a01620-209d-446b-9b6b-4c8bb14af322">
 						<dataSourceExpression><![CDATA[$P{ds}]]></dataSourceExpression>
 					</datasetRun>
-					<jr:column width="60" uuid="d0e8930f-9ade-4b7a-a2b3-50c68521ba08">
+					<jr:column width="50" uuid="d0e8930f-9ade-4b7a-a2b3-50c68521ba08">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
-						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+						<jr:columnHeader style="Table_CH" height="20" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="60" height="30" uuid="7d021c29-d768-4744-a4b4-91aabfd835fa"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<reportElement x="0" y="0" width="50" height="20" uuid="7d021c29-d768-4744-a4b4-91aabfd835fa"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Tahoma" size="8" isBold="true"/>
+								</textElement>
 								<text><![CDATA[Código]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table_TD" height="30">
+						<jr:detailCell style="Table_TD" height="10">
 							<textField>
-								<reportElement x="0" y="0" width="60" height="30" uuid="b383cb18-8ccd-45bd-9fc6-81c0aca7e7b6"/>
+								<reportElement x="0" y="0" width="50" height="10" uuid="b383cb18-8ccd-45bd-9fc6-81c0aca7e7b6"/>
 								<box>
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -203,49 +221,53 @@
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="9"/>
+									<font fontName="Tahoma" size="8" isBold="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{productCode}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="160" uuid="41836c95-91b6-46b3-a10f-d3bb86290cc3">
+					<jr:column width="190" uuid="41836c95-91b6-46b3-a10f-d3bb86290cc3">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
-						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+						<jr:columnHeader style="Table_CH" height="20" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="160" height="30" uuid="521d62cb-c422-4a0c-bb0c-a965c3f983ec"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<reportElement x="0" y="0" width="190" height="20" uuid="521d62cb-c422-4a0c-bb0c-a965c3f983ec"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Tahoma" size="8" isBold="true"/>
+								</textElement>
 								<text><![CDATA[Descripción]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table_TD" height="30">
+						<jr:detailCell style="Table_TD" height="10">
 							<textField>
-								<reportElement x="0" y="0" width="160" height="30" uuid="5cb78185-faf2-40da-800b-bbc034a9edaf"/>
+								<reportElement x="0" y="0" width="190" height="10" uuid="5cb78185-faf2-40da-800b-bbc034a9edaf"/>
 								<box>
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 									<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
-								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="9"/>
+								<textElement verticalAlignment="Middle">
+									<font fontName="Tahoma" size="8" isBold="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="60" uuid="74745e88-aaf2-4be3-93f4-36410d4e0d49">
+					<jr:column width="50" uuid="74745e88-aaf2-4be3-93f4-36410d4e0d49">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
-						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+						<jr:columnHeader style="Table_CH" height="20" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="60" height="30" uuid="dbf6b60c-4dac-4505-8abb-02a25b79f015"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<reportElement x="0" y="0" width="50" height="20" uuid="dbf6b60c-4dac-4505-8abb-02a25b79f015"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Tahoma" size="8" isBold="true"/>
+								</textElement>
 								<text><![CDATA[Cantidad]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table_TD" height="30">
+						<jr:detailCell style="Table_TD" height="10">
 							<textField>
-								<reportElement x="0" y="0" width="60" height="30" uuid="e2032fcb-52cd-46f2-a206-4ae5b28556fe"/>
+								<reportElement x="0" y="0" width="50" height="10" uuid="e2032fcb-52cd-46f2-a206-4ae5b28556fe"/>
 								<box>
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -253,7 +275,7 @@
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="9"/>
+									<font fontName="Tahoma" size="8" isBold="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{quantity}]]></textFieldExpression>
 							</textField>
@@ -261,16 +283,18 @@
 					</jr:column>
 					<jr:column width="80" uuid="021d6aec-4aa6-4d99-b3ad-d014aa87713e">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
-						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+						<jr:columnHeader style="Table_CH" height="20" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="80" height="30" uuid="1a45f8cf-af1c-451f-a080-3380cbe434fc"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<reportElement x="0" y="0" width="80" height="20" uuid="1a45f8cf-af1c-451f-a080-3380cbe434fc"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Tahoma" size="8" isBold="true"/>
+								</textElement>
 								<text><![CDATA[P/unit]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table_TD" height="30">
+						<jr:detailCell style="Table_TD" height="10">
 							<textField>
-								<reportElement x="0" y="0" width="80" height="30" uuid="78731842-57f2-450b-996f-0344ccfac586"/>
+								<reportElement x="0" y="0" width="80" height="10" uuid="78731842-57f2-450b-996f-0344ccfac586"/>
 								<box>
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -278,7 +302,7 @@
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="9"/>
+									<font fontName="Tahoma" size="8" isBold="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{price}]]></textFieldExpression>
 							</textField>
@@ -286,16 +310,18 @@
 					</jr:column>
 					<jr:column width="80" uuid="f37f051d-b173-4afc-b0a1-8931750e11e9">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column5"/>
-						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+						<jr:columnHeader style="Table_CH" height="20" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="80" height="30" uuid="d238a9c9-552e-47e9-92b3-9bb8bf1f5719"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<reportElement x="0" y="0" width="80" height="20" uuid="d238a9c9-552e-47e9-92b3-9bb8bf1f5719"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Tahoma" size="8" isBold="true"/>
+								</textElement>
 								<text><![CDATA[Total]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table_TD" height="30">
+						<jr:detailCell style="Table_TD" height="10">
 							<textField>
-								<reportElement x="0" y="0" width="80" height="30" uuid="df71fdce-9c89-40c5-99dc-64c80cdf137f"/>
+								<reportElement x="0" y="0" width="80" height="10" uuid="df71fdce-9c89-40c5-99dc-64c80cdf137f"/>
 								<box>
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -303,24 +329,26 @@
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="9"/>
+									<font fontName="Tahoma" size="8" isBold="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{totalPrice}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="70" uuid="71d927bf-40b0-419c-ae05-1dadb5e06c69">
+					<jr:column width="60" uuid="71d927bf-40b0-419c-ae05-1dadb5e06c69">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column6"/>
-						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+						<jr:columnHeader style="Table_CH" height="20" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="70" height="30" uuid="49e3ab37-80b6-4f96-9f13-88b613ef6d7e"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle"/>
+								<reportElement x="0" y="0" width="60" height="20" uuid="49e3ab37-80b6-4f96-9f13-88b613ef6d7e"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle">
+									<font fontName="Tahoma" size="8" isBold="true"/>
+								</textElement>
 								<text><![CDATA[kgs./m]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table_TD" height="30">
+						<jr:detailCell style="Table_TD" height="10">
 							<textField>
-								<reportElement x="0" y="0" width="70" height="30" uuid="7dbd1718-cff1-4ebc-8cca-6eb490a2750e"/>
+								<reportElement x="0" y="0" width="60" height="10" uuid="7dbd1718-cff1-4ebc-8cca-6eb490a2750e"/>
 								<box>
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -328,24 +356,26 @@
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="9"/>
+									<font fontName="Tahoma" size="8" isBold="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{weightPerMeter}]]></textFieldExpression>
 							</textField>
 						</jr:detailCell>
 					</jr:column>
-					<jr:column width="50" uuid="0c081614-750b-406c-8e73-291c1fb0dd85">
+					<jr:column width="40" uuid="0c081614-750b-406c-8e73-291c1fb0dd85">
 						<property name="com.jaspersoft.studio.components.table.model.column.name" value="Column7"/>
-						<jr:columnHeader style="Table_CH" height="30" rowSpan="1">
+						<jr:columnHeader style="Table_CH" height="20" rowSpan="1">
 							<staticText>
-								<reportElement x="0" y="0" width="50" height="30" uuid="c4bcfcdd-4611-41f8-a0da-2235c71a9e52"/>
-								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None"/>
+								<reportElement x="0" y="0" width="40" height="20" uuid="c4bcfcdd-4611-41f8-a0da-2235c71a9e52"/>
+								<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+									<font fontName="Tahoma" size="8" isBold="true"/>
+								</textElement>
 								<text><![CDATA[Largo/mt]]></text>
 							</staticText>
 						</jr:columnHeader>
-						<jr:detailCell style="Table_TD" height="30">
+						<jr:detailCell style="Table_TD" height="10">
 							<textField>
-								<reportElement x="0" y="0" width="50" height="30" uuid="2dac319c-5656-4961-b24f-f3ec383d53b2"/>
+								<reportElement x="0" y="0" width="40" height="10" uuid="2dac319c-5656-4961-b24f-f3ec383d53b2"/>
 								<box>
 									<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
 									<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
@@ -353,7 +383,7 @@
 									<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
 								</box>
 								<textElement textAlignment="Center" verticalAlignment="Middle">
-									<font size="9"/>
+									<font fontName="Tahoma" size="8" isBold="true"/>
 								</textElement>
 								<textFieldExpression><![CDATA[$F{length}]]></textFieldExpression>
 							</textField>
@@ -362,203 +392,184 @@
 				</jr:table>
 			</componentElement>
 			<textField>
-				<reportElement x="380" y="4" width="100" height="16" uuid="b3a9db18-a47b-4337-9f20-8448e355fb2e"/>
-				<textElement textAlignment="Center" verticalAlignment="Top">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{customerRut}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="65" y="4" width="145" height="16" uuid="48a2dece-ff7a-4712-895b-c0ee9f8e3811"/>
-				<textElement verticalAlignment="Top">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{customerPhoneNumber}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="65" y="13" width="250" height="25" uuid="902e0bf1-855a-4e37-8f4e-64d3559df028">
+				<reportElement x="50" y="-3" width="250" height="11" uuid="902e0bf1-855a-4e37-8f4e-64d3559df028">
 					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle">
-					<font isBold="true"/>
+				<textElement textAlignment="Justified" verticalAlignment="Top">
+					<font size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{customerAddress}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="400" y="18" width="150" height="18" uuid="5e14fdc0-a51a-4a75-9dd8-d56a33fcdcbc"/>
-				<textElement verticalAlignment="Middle">
-					<font isBold="true"/>
+				<reportElement x="395" y="-2" width="150" height="12" uuid="5e14fdc0-a51a-4a75-9dd8-d56a33fcdcbc"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="SansSerif" size="8" isBold="true"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{salespersonName}]]></textFieldExpression>
 			</textField>
-		</band>
-	</columnHeader>
-	<detail>
-		<band height="272" splitType="Stretch">
 			<staticText>
-				<reportElement x="1" y="50" width="80" height="20" uuid="8c3b0dcd-5a66-4891-8cfb-6f8f7969a035"/>
+				<reportElement x="0" y="220" width="80" height="10" uuid="8c3b0dcd-5a66-4891-8cfb-6f8f7969a035"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11" isBold="false"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Observación:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="1" y="70" width="250" height="30" uuid="dd155b65-e710-41a6-8946-26d9d5407f34"/>
+				<reportElement x="300" y="220" width="59" height="10" uuid="839a8ff6-26c3-451c-9ad0-a726fe4b74dd"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="9"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sub Total]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="220" width="74" height="10" uuid="facb52d9-0aeb-4128-af86-1c0338b8a7eb"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{subTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="230" width="280" height="10" uuid="dd155b65-e710-41a6-8946-26d9d5407f34"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[OFERTA VALIDA 1 DÍA, SUJETO A CONFIRMACIÓN DE MATERIALES]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="301" y="87" width="70" height="18" uuid="f1169bba-7cef-4a65-9db5-772f4d699f04"/>
+				<reportElement x="300" y="230" width="58" height="10" uuid="a4559038-8777-44ef-93f9-8dfc5840e618"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[SUB-TOTAL]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="301" y="69" width="58" height="18" uuid="a4559038-8777-44ef-93f9-8dfc5840e618"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Descuento]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="302" y="104" width="69" height="18" uuid="1a5a43a1-6376-4d1b-91b3-9272353b8a50"/>
+				<reportElement x="0" y="272" width="99" height="10" uuid="b3d30b88-93b1-4327-b889-f8c62ed4a243"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[IVA 19%]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="300" y="51" width="59" height="18" uuid="839a8ff6-26c3-451c-9ad0-a726fe4b74dd"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[Sub Total]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="146" width="99" height="18" uuid="b3d30b88-93b1-4327-b889-f8c62ed4a243"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[RUT: 76.729.575-8]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="128" width="249" height="18" uuid="a68a9bd1-0a90-41f0-9d47-2e0e192e0816"/>
+				<reportElement x="0" y="260" width="249" height="12" uuid="a68a9bd1-0a90-41f0-9d47-2e0e192e0816"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[IMPORT & EXPORT CONSTRUCTORA GTC SPA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="164" width="184" height="18" forecolor="#0977DE" uuid="cf50a2f3-d787-4a50-a96a-ddaf7230e97f"/>
+				<reportElement x="0" y="250" width="249" height="10" forecolor="#F0170C" uuid="07922823-3ce4-44e5-b45a-3607795cae31"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11" isUnderline="true"/>
-				</textElement>
-				<text><![CDATA[robinsonsep@globalgtc.cl]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="230" width="69" height="18" uuid="ec20cbab-9c32-4960-ad51-fbd1dff7e48b"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[OBRA:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="110" width="249" height="18" forecolor="#F0170C" uuid="07922823-3ce4-44e5-b45a-3607795cae31"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial" size="11" isBold="true"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[DATOS PARA TRANSFERENCIA BANCARIA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="282" y="122" width="99" height="18" uuid="d3939633-d42a-4a65-8c06-8184cefd12a6"/>
+				<reportElement x="300" y="240" width="70" height="10" uuid="f1169bba-7cef-4a65-9db5-772f4d699f04"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUB-TOTAL]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="240" width="74" height="10" uuid="106cf27e-15cd-4972-a1ce-86cf6a0b3220"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{subTotal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="300" y="250" width="69" height="10" uuid="1a5a43a1-6376-4d1b-91b3-9272353b8a50"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[IVA 19%]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="250" width="74" height="10" uuid="04739426-cb2a-48d4-8508-3878bd1612d7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{tax}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="300" y="260" width="99" height="12" uuid="d3939633-d42a-4a65-8c06-8184cefd12a6"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[TOTAL A PAGAR]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="300" y="200" width="160" height="18" forecolor="#F0120E" uuid="7a9e4fea-8d02-4987-a3af-33a2807540e2"/>
+			<textField>
+				<reportElement x="411" y="260" width="90" height="12" uuid="8b0f7848-57a7-4d4c-b854-0fea52075874"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalPayment}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="280" width="184" height="10" forecolor="#0977DE" uuid="cf50a2f3-d787-4a50-a96a-ddaf7230e97f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[robinsonsep@globalgtc.cl]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="300" y="276" width="69" height="14" uuid="c146d737-3943-4e10-b30f-9d2702849c88"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TOTAL KG]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="411" y="280" width="94" height="10" uuid="96448825-abdd-4a20-8bf1-b004d9ca15c4"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{totalWeight}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="320" width="69" height="12" uuid="ec20cbab-9c32-4960-ad51-fbd1dff7e48b"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[OBRA:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="301" y="300" width="160" height="12" forecolor="#F0120E" uuid="7a9e4fea-8d02-4987-a3af-33a2807540e2"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[FORMA DE PAGO: CONTADO]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="302" y="164" width="69" height="18" uuid="c146d737-3943-4e10-b30f-9d2702849c88"/>
+				<reportElement x="1" y="290" width="219" height="10" uuid="284a39ed-ae63-49f6-8b04-15815295d1d4"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
-				</textElement>
-				<text><![CDATA[TOTAL KG]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="182" width="219" height="18" uuid="284a39ed-ae63-49f6-8b04-15815295d1d4"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[BANCO DE CHILE CTA NRO 1450688210]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="200" width="230" height="18" uuid="baf214bd-15d2-4b08-a523-19ba05c8418f"/>
+				<reportElement x="1" y="300" width="230" height="12" uuid="baf214bd-15d2-4b08-a523-19ba05c8418f"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Arial Rounded MT Bold" size="11"/>
+					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[BANCO ESTADO CTA NRO. 36000013832]]></text>
 			</staticText>
-			<textField>
-				<reportElement x="410" y="51" width="74" height="18" uuid="facb52d9-0aeb-4128-af86-1c0338b8a7eb"/>
-				<textElement verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{subTotal}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="410" y="84" width="74" height="16" uuid="106cf27e-15cd-4972-a1ce-86cf6a0b3220"/>
-				<textElement verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{subTotal}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="410" y="103" width="74" height="20" uuid="04739426-cb2a-48d4-8508-3878bd1612d7"/>
-				<textElement verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{tax}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="410" y="122" width="90" height="18" uuid="8b0f7848-57a7-4d4c-b854-0fea52075874"/>
-				<textElement verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{totalPayment}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="410" y="166" width="94" height="14" uuid="96448825-abdd-4a20-8bf1-b004d9ca15c4"/>
-				<textElement verticalAlignment="Middle">
-					<font isBold="true"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{totalWeight}]]></textFieldExpression>
-			</textField>
 		</band>
-	</detail>
-	<columnFooter>
-		<band height="45" splitType="Stretch">
+	</columnHeader>
+	<detail>
+		<band height="148" splitType="Stretch">
 			<staticText>
-				<reportElement x="47" y="10" width="461" height="18" forecolor="#F0120E" uuid="ad7b823e-bc65-42df-9b9f-e5020544ab34"/>
+				<reportElement x="40" y="30" width="461" height="18" forecolor="#F0120E" uuid="ad7b823e-bc65-42df-9b9f-e5020544ab34"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Arial Rounded MT Bold" size="9"/>
 				</textElement>
 				<text><![CDATA[**No se aceptarán anulaciones de órdenes de compra y devoluciones de productos a largos especiales**]]></text>
 			</staticText>
 		</band>
-	</columnFooter>
-	<pageFooter>
-		<band height="54" splitType="Stretch"/>
-	</pageFooter>
+	</detail>
 </jasperReport>
