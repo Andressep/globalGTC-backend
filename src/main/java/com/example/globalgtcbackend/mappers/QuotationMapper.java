@@ -5,78 +5,75 @@ import com.example.globalgtcbackend.models.dto.QuotationDTO;
 import com.example.globalgtcbackend.models.entity.Quotation;
 import com.example.globalgtcbackend.models.entity.QuotationDetails;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
+import java.text.DecimalFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
 
-@Component
-public class QuotationMapper {
+@Component("QuotationMapper")
+public class QuotationMapper implements Mapper<Quotation, QuotationDTO> {
 
-    private final ModelMapper modelMapper;
-
-    public QuotationMapper() {
-        modelMapper = new ModelMapper();
+    @Override
+    public Quotation transformBack(QuotationDTO source) {
+        return null;
     }
-
-    public QuotationDTO toDTO(Quotation quotation) {
-        QuotationDTO quotationDTO = modelMapper.map(quotation, QuotationDTO.class);
+    @Override
+    public QuotationDTO transform(Quotation source) {
+        QuotationDTO quotationDTO = new QuotationDTO();
+        BeanUtils.copyProperties(source, quotationDTO, "quotationDetails");
 
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy", new Locale("es", "ES")); // Define tu formato aquí
-        String formattedDate = quotation.getCreatedAt().format(formatter);
+        String formattedDate = source.getCreatedAt().format(formatter);
+        // Datos asignados //
         quotationDTO.setCreatedAt(formattedDate);
+        quotationDTO.setCustomerName(source.getCustomer().getName());
+        quotationDTO.setCustomerRut(source.getCustomer().getRut());
+        quotationDTO.setCustomerAddress(source.getCustomer().getAddress());
+        quotationDTO.setCustomerPhoneNumber(source.getCustomer().getPhone());
+        quotationDTO.setSalespersonName(source.getSalesperson().getName());
 
-        quotationDTO.setCustomerName(quotation.getCustomer().getName());
-        quotationDTO.setCustomerPhoneNumber(quotation.getCustomer().getPhone());
-        quotationDTO.setCustomerAddress(quotation.getCustomer().getAddress());
-        quotationDTO.setCustomerRut(quotation.getCustomer().getRut());
-        quotationDTO.setSalespersonName(quotation.getSalesperson().getName());
+        // Obteniendo datos de los productos //
+        List<ProductQuotationDTO> productList = new ArrayList<>();
+        for (QuotationDetails details : source.getQuotationDetails()) {
+            ProductQuotationDTO productDTO = new ProductQuotationDTO();
 
-        List<ProductQuotationDTO> productQuotationDTOList = new ArrayList<>();
-        for (QuotationDetails details : quotation.getQuotationDetails()) {
-            ProductQuotationDTO productQuotationDTO = new ProductQuotationDTO();
-
-            productQuotationDTO.setProductQuotationId(details.getProduct().getProductId());
-            productQuotationDTO.setProductCode(details.getProduct().getCode());
-            productQuotationDTO.setDescription(details.getProduct().getDescription());
-            productQuotationDTO.setQuantity(details.getQuantity());
-            productQuotationDTO.setPrice(details.getProduct().getPrice());
-            productQuotationDTO.setWeightPerMeter(details.getProduct().getWeight());
-            productQuotationDTO.setLength(details.getProduct().getLength());
-            productQuotationDTO.setTotalPrice(details.calculate());
-
-            productQuotationDTOList.add(productQuotationDTO);
+            productDTO.setProductId(details.getProduct().getProductId());
+            productDTO.setProductCode(details.getProduct().getProductCode());
+            productDTO.setDescription(details.getProduct().getDescription());
+            productDTO.setCategory(details.getProduct().getCategory());
+            productDTO.setQuantity(details.getQuantity());
+            productDTO.setPrice(details.getProduct().getPrice());
+            productDTO.setWeightPerMeter(details.getProduct().getWeight());
+            productDTO.setLength(details.getProduct().getLength());
+            productDTO.setTotalPrice(details.calculate());
+            productList.add(productDTO);
         }
-        quotationDTO.setQuotationDetailsList(productQuotationDTOList);
+        quotationDTO.setQuotationDetailsList(productList);
 
+        // Obteniendo datos acumulativos de la cotizacion //
         double subTotal = 0;
         double tax = 0;
         double totalWeight = 0;
         double totalPayment = 0;
-        for (ProductQuotationDTO product : productQuotationDTOList) {
+        DecimalFormat df = new DecimalFormat("#.##");
 
-            subTotal += product.getTotalPrice();
-            tax += (0.19 * subTotal);
-            totalWeight += (product.getQuantity() * product.getWeightPerMeter());
+        for (ProductQuotationDTO product : productList) {
+            subTotal += product.getPrice();
+            tax += (subTotal * 0.19);
+            totalWeight += (product.getQuantity() * (product.getWeightPerMeter() * product.getLength()));
             totalPayment += (tax + subTotal);
         }
+
         quotationDTO.setSubTotal(subTotal);
         quotationDTO.setTax(tax);
-        quotationDTO.setTotalWeight(totalWeight);
+        quotationDTO.setTotalWeight(Double.parseDouble(df.format(totalWeight)));
         quotationDTO.setTotalPayment(totalPayment);
 
         return quotationDTO;
     }
-
-    public List<QuotationDTO> toDTOList(List<Quotation> quotationList) {
-        return quotationList.stream()
-                .map(this::toDTO)
-                .collect(Collectors.toList());
-    }
-
 }

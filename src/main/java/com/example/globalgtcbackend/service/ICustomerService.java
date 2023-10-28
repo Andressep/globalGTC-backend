@@ -22,9 +22,9 @@ public interface ICustomerService {
     @Transactional(readOnly = true)
     QuotationDTO findQuotationDTOById(Integer id);
 
-    Quotation saveQuotation(Quotation quotation);
+    QuotationDTO saveQuotation(QuotationDTO quotation);
     void deleteQuotation(Integer id);
-    public byte[] exportToPdf(Integer id)throws JRException, FileNotFoundException;
+    byte[] exportToPdf(Integer id) throws JRException, FileNotFoundException;
 
     // Native Queries
     List<Product> findByProductName(String term);

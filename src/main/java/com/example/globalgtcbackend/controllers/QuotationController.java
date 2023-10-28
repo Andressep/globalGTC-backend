@@ -28,8 +28,8 @@ public class QuotationController {
     private ICustomerService customerService;
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public ResponseEntity<?> create(@RequestBody Quotation quotation, BindingResult result) {
-        Quotation newQuotation = null;
+    public ResponseEntity<?> create(@RequestBody QuotationDTO quotation, BindingResult result) {
+        QuotationDTO newQuotation;
         Map<String, Object> response = new HashMap<>();
 
         if (result.hasErrors()) {
@@ -83,10 +83,10 @@ public class QuotationController {
         return customerService.findByProductName(term);
     }
 
-    /*@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@RequestBody Quotation quotation, BindingResult result, @PathVariable Integer id) {
-        Quotation quotationCurrent = customerService.findQuotationById(id);
-        Quotation quotationUpdated = null;
+        QuotationDTO quotationCurrent = customerService.findQuotationDTOById(id);
+        QuotationDTO quotationUpdated = null;
 
         Map<String, Object> response = new HashMap<>();
 
@@ -104,9 +104,11 @@ public class QuotationController {
             return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
         }
         try {
-            quotationCurrent.setCustomer(quotation.getCustomer());
-            quotationCurrent.setSalesperson(quotation.getSalesperson());
-            quotationCurrent.setQuotationDetails(quotation.getQuotationDetails());
+            quotationCurrent.setCustomerName(quotation.getCustomer().getName());
+            quotationCurrent.setCustomerRut(quotation.getCustomer().getRut());
+            quotationCurrent.setCustomerPhoneNumber(quotation.getCustomer().getPhone());
+            quotationCurrent.setCustomerAddress(quotation.getCustomer().getAddress());
+            quotationCurrent.setSalespersonName(quotation.getSalesperson().getName());
             quotationUpdated = customerService.saveQuotation(quotationCurrent);
         } catch (DataAccessException e) {
             response.put("message", "Error while updating the database.");
@@ -116,7 +118,7 @@ public class QuotationController {
         response.put("message", "Quotation has been updated successfully");
         response.put("quotation", quotationUpdated);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
-    }*/
+    }
 
     @RequestMapping(value="/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<?> delete(@PathVariable Integer id) {

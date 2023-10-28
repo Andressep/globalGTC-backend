@@ -1,18 +1,21 @@
 package com.example.globalgtcbackend.service.impl;
 
-import com.example.globalgtcbackend.mappers.ProductMapper;
-import com.example.globalgtcbackend.models.dto.ProductDTO;
+import com.example.globalgtcbackend.exception.ResourceNoFoundException;
+import com.example.globalgtcbackend.mappers.Mapper;
+import com.example.globalgtcbackend.models.dto.ProductQuotationDTO;
 import com.example.globalgtcbackend.models.entity.Category;
 import com.example.globalgtcbackend.models.entity.Product;
 import com.example.globalgtcbackend.repository.ICategoryDao;
 import com.example.globalgtcbackend.repository.IProductDao;
 import com.example.globalgtcbackend.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Optional;
 
 @Service
 public class ProductServiceImpl implements IProductService {
@@ -24,23 +27,34 @@ public class ProductServiceImpl implements IProductService {
     private ICategoryDao categoryDao;
 
     @Autowired
-    private ProductMapper productMapper;
+    @Qualifier("ProductMapper")
+    private Mapper<Product, ProductQuotationDTO> productMapper;
     @Override
     @Transactional(readOnly = true)
-    public List<ProductDTO> getAllProducts() {
-        return productMapper.toDTOList(productDao.findAll());
+    public List<ProductQuotationDTO> getAllProducts() {
+        var products = productDao.findAll();
+        List<ProductQuotationDTO> productDTOS = new ArrayList<>();
+        Optional.ofNullable(products).ifPresent(
+                product -> product.forEach(
+                        eachProduct -> productDTOS.add(productMapper.transform(eachProduct))
+                )
+        );
+        return productDTOS;
     }
 
     @Override
     @Transactional(readOnly = true)
-    public Product findProductById(Integer id) {
-        return productDao.findById(id).orElse(null);
+    public ProductQuotationDTO findProductById(Integer id) {
+        var productDTO = productDao.findById(id);
+        if (productDTO.isPresent()) return productMapper.transform(productDTO.get());
+        throw new ResourceNoFoundException("Product ID is invalid");
     }
 
     @Override
     @Transactional()
-    public Product saveProduct(Product product) {
-        return productDao.save(product);
+    public ProductQuotationDTO saveProduct(ProductQuotationDTO product) {
+        Product products = productMapper.transformBack(product);
+        return productMapper.transform(productDao.save(products));
     }
 
     @Override

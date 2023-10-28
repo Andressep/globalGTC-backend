@@ -1,5 +1,6 @@
 package com.example.globalgtcbackend.models.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,15 +23,15 @@ public class Product implements Serializable {
     @Column(name = "description", length = 50, nullable = false)
     private String description;
 
-    @Column(name = "code", length = 10)
-    private String code;
+    @Column(name = "productCode", length = 10)
+    private String productCode;
 
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id")
     private Category category;
 
-    private String length;
+    private double length;
 
     private double price;
 

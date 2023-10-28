@@ -1,30 +1,25 @@
 package com.example.globalgtcbackend.mappers;
 
-import com.example.globalgtcbackend.models.dto.ProductDTO;
+import com.example.globalgtcbackend.models.dto.ProductQuotationDTO;
 import com.example.globalgtcbackend.models.entity.Product;
-import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
+import org.springframework.beans.BeanUtils;
 
-import java.util.List;
-import java.util.stream.Collectors;
 
-@Component
-public class ProductMapper {
 
-    private final ModelMapper modelMapper;
-    public ProductMapper() {
-        modelMapper = new ModelMapper();
+@Component("ProductMapper")
+public class ProductMapper implements Mapper<Product, ProductQuotationDTO>{
+    @Override
+    public ProductQuotationDTO transform(Product product) {
+        var productDto = new ProductQuotationDTO();
+        BeanUtils.copyProperties(product, productDto);
+        return productDto;
     }
 
-    public ProductDTO toDTO(Product product) {
-        return modelMapper.map(product, ProductDTO.class);
-    }
-    public Product toEntity(ProductDTO productDTO) {
-        return modelMapper.map(productDTO, Product.class);
-    }
-    public List<ProductDTO> toDTOList(List<Product> productList) {
-        return productList.stream()
-                .map(this::toDTO)
-                .collect(Collectors.toList());
+    @Override
+    public Product transformBack(ProductQuotationDTO productDTO) {
+        var product = new Product();
+        BeanUtils.copyProperties(productDTO, product);
+        return product;
     }
 }

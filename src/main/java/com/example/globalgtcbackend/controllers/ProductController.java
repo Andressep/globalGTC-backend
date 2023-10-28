@@ -1,7 +1,6 @@
 package com.example.globalgtcbackend.controllers;
 
-import com.example.globalgtcbackend.mappers.ProductMapper;
-import com.example.globalgtcbackend.models.dto.ProductDTO;
+import com.example.globalgtcbackend.models.dto.ProductQuotationDTO;
 import com.example.globalgtcbackend.models.entity.Category;
 import com.example.globalgtcbackend.models.entity.Product;
 import com.example.globalgtcbackend.service.IProductService;
@@ -23,12 +22,10 @@ public class ProductController {
 
     @Autowired
     private IProductService productService;
-    @Autowired
-    private ProductMapper productMapper;
 
     @RequestMapping(value = "/create", produces = "application/json", method = RequestMethod.POST)
-    public ResponseEntity<?> create(@RequestBody Product product, BindingResult result) {
-        Product newProduct = null;
+    public ResponseEntity<?> create(@RequestBody ProductQuotationDTO product, BindingResult result) {
+        ProductQuotationDTO newProduct;
         Category category = productService.findCategoryById(product.getCategory().getCategoryId());
         Map<String, Object> response = new HashMap<>();
 
@@ -41,7 +38,6 @@ public class ProductController {
             response.put("errors", errors);
             return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         }
-
         try {
             product.setCategory(category);
             newProduct = productService.saveProduct(product);
@@ -56,19 +52,17 @@ public class ProductController {
     }
 
     @GetMapping("/all")
-    public List<ProductDTO> getAll() {
-        return productService.getAllProducts();
+    public ResponseEntity<List<ProductQuotationDTO>> getAll() {
+        List<ProductQuotationDTO> productDTOS = productService.getAllProducts();
+        return new ResponseEntity<>(productDTOS, HttpStatus.OK);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> show(@PathVariable Integer id) {
-        Product product = null;
-        ProductDTO productDTO;
+        ProductQuotationDTO productDTO;
         Map<String, Object> response = new HashMap<>();
-
         try {
-            product = productService.findProductById(id);
-            productDTO = productMapper.toDTO(product);
+            productDTO = productService.findProductById(id);
         } catch (DataAccessException e) {
             response.put("message", "Error while searching the database");
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
@@ -83,8 +77,8 @@ public class ProductController {
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@RequestBody Product product, BindingResult result, @PathVariable Integer id) {
-        Product currentProduct = productService.findProductById(id);
-        ProductDTO productDTO = null;
+        ProductQuotationDTO currentProduct = productService.findProductById(id);
+        ProductQuotationDTO productDTO = null;
 
         Map<String, Object> response = new HashMap<>();
 
@@ -104,8 +98,8 @@ public class ProductController {
             currentProduct.setDescription(product.getDescription());
             currentProduct.setPrice(product.getPrice());
             currentProduct.setLength(product.getLength());
-            currentProduct.setWeight(product.getWeight());
-            productDTO = productMapper.toDTO(currentProduct);
+            currentProduct.setWeightPerMeter(product.getWeight());
+            productDTO = productService.saveProduct(currentProduct);
         } catch (DataAccessException e) {
             response.put("message", "Error while updating the database.");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
