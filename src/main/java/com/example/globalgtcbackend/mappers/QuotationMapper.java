@@ -4,7 +4,6 @@ import com.example.globalgtcbackend.models.dto.ProductQuotationDTO;
 import com.example.globalgtcbackend.models.dto.QuotationDTO;
 import com.example.globalgtcbackend.models.entity.Quotation;
 import com.example.globalgtcbackend.models.entity.QuotationDetails;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
@@ -13,14 +12,15 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
-import java.util.stream.Collectors;
 
 @Component("QuotationMapper")
 public class QuotationMapper implements Mapper<Quotation, QuotationDTO> {
 
     @Override
     public Quotation transformBack(QuotationDTO source) {
-        return null;
+        var quotation = new Quotation();
+        BeanUtils.copyProperties(source, quotation);
+        return quotation;
     }
     @Override
     public QuotationDTO transform(Quotation source) {
@@ -48,7 +48,7 @@ public class QuotationMapper implements Mapper<Quotation, QuotationDTO> {
             productDTO.setCategory(details.getProduct().getCategory());
             productDTO.setQuantity(details.getQuantity());
             productDTO.setPrice(details.getProduct().getPrice());
-            productDTO.setWeightPerMeter(details.getProduct().getWeight());
+            productDTO.setWeightPerMeter(details.getProduct().getWeightPerMeter());
             productDTO.setLength(details.getProduct().getLength());
             productDTO.setTotalPrice(details.calculate());
             productList.add(productDTO);
@@ -59,20 +59,17 @@ public class QuotationMapper implements Mapper<Quotation, QuotationDTO> {
         double subTotal = 0;
         double tax = 0;
         double totalWeight = 0;
-        double totalPayment = 0;
         DecimalFormat df = new DecimalFormat("#.##");
 
         for (ProductQuotationDTO product : productList) {
-            subTotal += product.getPrice();
-            tax += (subTotal * 0.19);
+            subTotal += product.getTotalPrice();
             totalWeight += (product.getQuantity() * (product.getWeightPerMeter() * product.getLength()));
-            totalPayment += (tax + subTotal);
         }
-
+        tax = subTotal * 0.19;
         quotationDTO.setSubTotal(subTotal);
         quotationDTO.setTax(tax);
         quotationDTO.setTotalWeight(Double.parseDouble(df.format(totalWeight)));
-        quotationDTO.setTotalPayment(totalPayment);
+        quotationDTO.setTotalPayment(subTotal + tax);
 
         return quotationDTO;
     }

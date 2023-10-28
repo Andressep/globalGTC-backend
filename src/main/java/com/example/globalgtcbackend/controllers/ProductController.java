@@ -98,7 +98,7 @@ public class ProductController {
             currentProduct.setDescription(product.getDescription());
             currentProduct.setPrice(product.getPrice());
             currentProduct.setLength(product.getLength());
-            currentProduct.setWeightPerMeter(product.getWeight());
+            currentProduct.setWeightPerMeter(product.getWeightPerMeter());
             productDTO = productService.saveProduct(currentProduct);
         } catch (DataAccessException e) {
             response.put("message", "Error while updating the database.");

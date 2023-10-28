@@ -4,7 +4,7 @@ import com.example.globalgtcbackend.models.dto.QuotationDTO;
 import com.example.globalgtcbackend.models.entity.Product;
 import com.example.globalgtcbackend.models.entity.Quotation;
 
-import com.example.globalgtcbackend.service.ICustomerService;
+import com.example.globalgtcbackend.service.IQuotationService;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -25,11 +25,11 @@ import java.util.Map;
 public class QuotationController {
 
     @Autowired
-    private ICustomerService customerService;
+    private IQuotationService quotationService;
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public ResponseEntity<?> create(@RequestBody QuotationDTO quotation, BindingResult result) {
-        QuotationDTO newQuotation;
+        QuotationDTO newQuotation = new QuotationDTO();
         Map<String, Object> response = new HashMap<>();
 
         if (result.hasErrors()) {
@@ -43,7 +43,7 @@ public class QuotationController {
         }
 
         try {
-            newQuotation = customerService.saveQuotation(quotation);
+            newQuotation = quotationService.saveQuotation(quotation);
         } catch (DataAccessException e) {
             response.put("message", "Error while inserting into the database");
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
@@ -56,7 +56,7 @@ public class QuotationController {
 
     @RequestMapping(value = "/all", method = RequestMethod.GET)
     public List<QuotationDTO> getAll() {
-        return customerService.getAllQuotations();
+        return quotationService.getAllQuotations();
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
@@ -65,7 +65,7 @@ public class QuotationController {
         Map<String, Object> response = new HashMap<>();
 
         try {
-            quotationDTO = customerService.findQuotationDTOById(id);
+            quotationDTO = quotationService.findQuotationDTOById(id);
         } catch (DataAccessException e) {
             response.put("message", "Error while searching the database");
             response.put("Error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
@@ -78,14 +78,14 @@ public class QuotationController {
         return new ResponseEntity<>(quotationDTO, HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/filter/{term}")
+    @RequestMapping(value = "/filter/{term}", method = RequestMethod.GET)
     public List<Product> showProductsByName(@PathVariable String term) {
-        return customerService.findByProductName(term);
+        return quotationService.findByProductName(term);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> update(@RequestBody Quotation quotation, BindingResult result, @PathVariable Integer id) {
-        QuotationDTO quotationCurrent = customerService.findQuotationDTOById(id);
+        QuotationDTO quotationCurrent = quotationService.findQuotationDTOById(id);
         QuotationDTO quotationUpdated = null;
 
         Map<String, Object> response = new HashMap<>();
@@ -109,7 +109,7 @@ public class QuotationController {
             quotationCurrent.setCustomerPhoneNumber(quotation.getCustomer().getPhone());
             quotationCurrent.setCustomerAddress(quotation.getCustomer().getAddress());
             quotationCurrent.setSalespersonName(quotation.getSalesperson().getName());
-            quotationUpdated = customerService.saveQuotation(quotationCurrent);
+            quotationUpdated = quotationService.saveQuotation(quotationCurrent);
         } catch (DataAccessException e) {
             response.put("message", "Error while updating the database.");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
@@ -124,7 +124,7 @@ public class QuotationController {
     public ResponseEntity<?> delete(@PathVariable Integer id) {
         Map<String, Object> response = new HashMap<>();
         try {
-            customerService.deleteCustomer(id);
+            quotationService.deleteQuotation(id);
         } catch (DataAccessException e) {
             response.put("message", "Error while deleting from the database.");
             response.put("error", e.getMessage().concat(": ").concat(e.getMostSpecificCause().getMessage()));
@@ -141,7 +141,7 @@ public class QuotationController {
         headers.setContentDispositionFormData("quotationReport", "quotationReport.pdf");
 
         // Llamar al servicio para obtener el informe PDF a partir del ID de la cotización
-        byte[] pdfBytes = customerService.exportToPdf(id);
+        byte[] pdfBytes = quotationService.exportToPdf(id);
 
         return ResponseEntity.ok().headers(headers).body(pdfBytes);
     }

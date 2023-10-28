@@ -35,7 +35,7 @@ public class Product implements Serializable {
 
     private double price;
 
-    private double weight;
+    private double weightPerMeter;
 
     @Temporal(TemporalType.DATE)
     @Column(name = "created_at")

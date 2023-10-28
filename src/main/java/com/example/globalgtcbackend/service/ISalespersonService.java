@@ -1,8 +1,6 @@
 package com.example.globalgtcbackend.service;
 
-
 import com.example.globalgtcbackend.models.entity.Salesperson;
-
 import java.util.List;
 
 public interface ISalespersonService {

@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface IProductDao extends JpaRepository<Product, Integer> {
 
-    @Query(value = "SELECT * FROM products WHERE name LIKE %?%", nativeQuery = true)
+    @Query(value = "SELECT * FROM products WHERE description LIKE %?%", nativeQuery = true)
     public List<Product> findByProductName(String term);
 }

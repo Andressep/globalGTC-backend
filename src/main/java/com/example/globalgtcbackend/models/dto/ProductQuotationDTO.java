@@ -5,8 +5,8 @@ import lombok.*;
 
 @Getter
 @Setter
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @ToString
 public class ProductQuotationDTO {
     private Integer productId;

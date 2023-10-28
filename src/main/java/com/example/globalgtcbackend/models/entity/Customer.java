@@ -26,7 +26,7 @@ public class Customer implements Serializable {
     private String rut;
     @Column(name = "address", length = 45)
     private String address;
-    @Column(name = "email", length = 25, nullable = false)
+    @Column(name = "email", length = 25)
     private String email;
     @JsonIgnoreProperties(value = {"customer", "hibernateLazyInitializer", "handler"})
     @OneToMany(mappedBy = "customer", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
@@ -35,10 +35,5 @@ public class Customer implements Serializable {
     public Customer() {
         quotations = new ArrayList<>();
     }
-
-   public void addQuotation(Quotation quotation) {
-        quotations.add(quotation);
-    }
-
     private static final long serialVersionUID = 1L;
 }
