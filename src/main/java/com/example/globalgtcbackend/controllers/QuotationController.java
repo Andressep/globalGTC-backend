@@ -5,6 +5,8 @@ import com.example.globalgtcbackend.models.entity.Product;
 import com.example.globalgtcbackend.models.entity.Quotation;
 
 import com.example.globalgtcbackend.service.IQuotationService;
+import com.example.globalgtcbackend.utils.EmailService;
+import jakarta.mail.Quota;
 import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
@@ -23,7 +25,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/v1/quotation")
 public class QuotationController {
-
+    @Autowired
+    private EmailService emailService;
     @Autowired
     private IQuotationService quotationService;
 
@@ -146,5 +149,12 @@ public class QuotationController {
         return ResponseEntity.ok().headers(headers).body(pdfBytes);
     }
 
+    @GetMapping("/mail")
+    public ResponseEntity<String> sendMail(@RequestParam("quotationId") Integer quotationId, @RequestParam("recipientEmail") String recipientEmail) throws JRException, FileNotFoundException {
+        QuotationDTO quotationDTO = quotationService.findQuotationDTOById(quotationId);
+        this.emailService.sendQuotationByEmail(quotationDTO, recipientEmail);
+
+        return new ResponseEntity<>("Cotizacion enviada con exito", HttpStatus.OK);
+    }
 }
 

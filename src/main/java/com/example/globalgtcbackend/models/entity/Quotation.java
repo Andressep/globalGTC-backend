@@ -21,6 +21,8 @@ public class Quotation implements Serializable {
     @Id
     @GeneratedValue( strategy = GenerationType.IDENTITY)
     private Integer quotationId;
+    @Column(name = "quotation_code", length = 5)
+    private String quotationCode;
     @DateTimeFormat(pattern = "dd-MM-yyy")
     @Column(name = "created_at")
     private LocalDate createdAt;

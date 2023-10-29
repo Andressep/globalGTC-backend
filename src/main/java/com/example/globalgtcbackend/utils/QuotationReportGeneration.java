@@ -20,17 +20,19 @@ public class QuotationReportGeneration {
 
     public byte[] exportToPdf(QuotationDTO quotationDTO) throws JRException, FileNotFoundException {
         JasperPrint report = getReport(quotationDTO);
-
+        /*
         LocalDateTime currentTime = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
         String timestamp = currentTime.format(formatter);
+        String fileName = "/Users/andressepulveda/Desktop/JasperReport/COT " + timestamp + ".pdf";
+         */
+        String fileName = "/Users/andressepulveda/Desktop/JasperReport/COT " + quotationDTO.getQuotationCode() + " GTC" + ".pdf";
 
-        String fileName = "/Users/andressepulveda/Desktop/JasperReport/report_" + timestamp + ".pdf";
         JasperExportManager.exportReportToPdfFile(report, fileName);
 
         return JasperExportManager.exportReportToPdf(report);
     }
-    private JasperPrint getReport(QuotationDTO quotationDto) throws JRException, FileNotFoundException {
+    public JasperPrint getReport(QuotationDTO quotationDto) throws JRException, FileNotFoundException {
         File imgLogo = ResourceUtils.getFile("classpath:images/globalGTC.jpg");
         Map<String, Object> params = new HashMap<>();
         params.put("quotationDto", quotationDto);

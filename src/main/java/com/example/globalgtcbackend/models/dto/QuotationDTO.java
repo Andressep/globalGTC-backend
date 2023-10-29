@@ -11,6 +11,7 @@ import java.util.List;
 @ToString
 public class QuotationDTO {
     private Integer quotationId;
+    private String quotationCode;
     private String createdAt;
     private String customerName;
     private String customerPhoneNumber;
