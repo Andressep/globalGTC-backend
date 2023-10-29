@@ -9,8 +9,6 @@ import org.springframework.util.ResourceUtils;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,15 +18,12 @@ public class QuotationReportGeneration {
 
     public byte[] exportToPdf(QuotationDTO quotationDTO) throws JRException, FileNotFoundException {
         JasperPrint report = getReport(quotationDTO);
-        /*
-        LocalDateTime currentTime = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss");
-        String timestamp = currentTime.format(formatter);
-        String fileName = "/Users/andressepulveda/Desktop/JasperReport/COT " + timestamp + ".pdf";
-         */
-        String fileName = "/Users/andressepulveda/Desktop/JasperReport/COT " + quotationDTO.getQuotationCode() + " GTC" + ".pdf";
+        String reportPath = createReportDirectory(quotationDTO.getQuotationCode());
 
-        JasperExportManager.exportReportToPdfFile(report, fileName);
+
+        //String fileName = "/Users/andressepulveda/Desktop/JasperReport/COT " + quotationDTO.getQuotationCode() + " GTC" + ".pdf";
+
+        JasperExportManager.exportReportToPdfFile(report, reportPath);
 
         return JasperExportManager.exportReportToPdf(report);
     }
@@ -53,6 +48,25 @@ public class QuotationReportGeneration {
                 ResourceUtils.getFile("classpath:Global.jrxml")
                         .getAbsolutePath()), params, new JREmptyDataSource());
         return report;
+    }
+    public String createReportDirectory(String quotationCode) {
+        String userHome = System.getProperty("user.home");
+        String desktopPath = userHome + "/Desktop";
+        String folderPath = desktopPath + "/JasperReportTest";
+        String fileName = "COT " + quotationCode + " GTC.pdf";
+
+        File folder = new File(folderPath);
+        if (!folder.exists()) {
+            if (folder.mkdirs()) {
+                System.out.println("Carpeta creada exitosamente.");
+            } else {
+                System.err.println("Error al crear la carpeta.");
+            }
+        } else {
+            System.out.println("La carpeta ya existe.");
+        }
+
+        return folderPath + "/" + fileName;
     }
 
 }

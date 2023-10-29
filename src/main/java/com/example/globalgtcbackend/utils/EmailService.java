@@ -1,6 +1,5 @@
 package com.example.globalgtcbackend.utils;
 
-
 import com.example.globalgtcbackend.models.dto.QuotationDTO;
 import jakarta.mail.internet.MimeMessage;
 import jakarta.mail.util.ByteArrayDataSource;
@@ -12,7 +11,6 @@ import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 
 @Service
